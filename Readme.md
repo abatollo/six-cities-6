@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Александр Батолло](https://up.htmlacademy.ru/react/6/user/65755).
-* Наставник: `Неизвестно`.
+* Наставник: [Валерий Соловьев](https://up.htmlacademy.ru/ecmascript/13/user/8640).
 
 ---
 
