@@ -4,15 +4,15 @@ import MainPage from "../main-page/main-page";
 
 
 const App = (props) => {
-  const {placesCount} = props;
+  const {hotels} = props;
 
   return (
-    <MainPage placesCount={placesCount}/>
+    <MainPage hotels={hotels}/>
   );
 };
 
 App.propTypes = {
-  placesCount: PropTypes.number.isRequired,
+  hotels: PropTypes.array.isRequired
 };
 
 export default App;
