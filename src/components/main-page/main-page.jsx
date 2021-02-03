@@ -105,7 +105,10 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  hotels: PropTypes.array.isRequired
+  hotels: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired
+  })).isRequired
 };
 
 export default MainPage;
