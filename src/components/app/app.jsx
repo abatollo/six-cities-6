@@ -7,22 +7,29 @@ import FavoritesScreen from "../favorites-screen/favorites-screen";
 import PropertyScreen from "../property-screen/property-screen";
 import NotFoundScreen from "../not-found-screen/not-found-screen";
 
+const Routes = {
+  MAIN: `/`,
+  LOGIN: `/login`,
+  FAVORITES: `/favorites`,
+  HOTELS: `/hotels/:id`
+};
+
 const App = (props) => {
   const {hotels} = props;
 
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={Routes.MAIN}>
           <MainScreen hotels={hotels} />
         </Route>
-        <Route exact path="/login">
+        <Route exact path={Routes.LOGIN}>
           <LoginScreen />
         </Route>
-        <Route exact path="/favorites">
+        <Route exact path={Routes.FAVORITES}>
           <FavoritesScreen />
         </Route>
-        <Route exact path="/property">
+        <Route exact path={Routes.HOTELS}>
           <PropertyScreen />
         </Route>
         <Route>
