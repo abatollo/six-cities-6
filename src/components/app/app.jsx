@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
 import MainScreen from "../main-screen/main-screen";
 import LoginScreen from "../login-screen/login-screen";
 import FavoritesScreen from "../favorites-screen/favorites-screen";
@@ -10,7 +11,25 @@ const App = (props) => {
   const {hotels} = props;
 
   return (
-    <MainScreen hotels={hotels} />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <MainScreen hotels={hotels} />
+        </Route>
+        <Route exact path="/login">
+          <LoginScreen />
+        </Route>
+        <Route exact path="/favorites">
+          <FavoritesScreen />
+        </Route>
+        <Route exact path="/property">
+          <PropertyScreen />
+        </Route>
+        <Route>
+          <NotFoundScreen />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 
