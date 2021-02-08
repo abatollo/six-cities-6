@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlaceCard from "../place-card/place-card";
 
-const MainPage = (props) => {
+const MainScreen = (props) => {
   const {hotels} = props;
 
   return (
@@ -104,7 +104,7 @@ const MainPage = (props) => {
   );
 };
 
-MainPage.propTypes = {
+MainScreen.propTypes = {
   hotels: PropTypes.arrayOf(
       PropTypes.shape({
         bedrooms: PropTypes.number.isRequired,
@@ -146,4 +146,4 @@ MainPage.propTypes = {
       })).isRequired
 };
 
-export default MainPage;
+export default MainScreen;
