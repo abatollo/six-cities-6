@@ -10,7 +10,7 @@ const App = (props) => {
   const {hotels} = props;
 
   return (
-    <PropertyScreen/>
+    <MainScreen hotels={hotels} />
   );
 };
 
