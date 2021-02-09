@@ -1,7 +1,6 @@
 import React from "react";
 
 const PlaceCard = () => {
-
   return (
     <article className="cities__place-card place-card">
       <div className="place-card__mark">
