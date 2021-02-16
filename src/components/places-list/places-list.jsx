@@ -1,8 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import PlaceCard from "../place-card/place-card";
 import {PropsValidator} from "../../utils";
 
 const PlacesList = ({hotels}) => {
+  const [idActive, setIdActive] = useState(hotels[0].id);
+
+  const handleMouseEnter = (id) => {
+    setIdActive(id);
+  };
+
   return (
     <div className="cities__places-list places__list tabs__content">
       {hotels.map((hotel) =>
@@ -16,6 +22,8 @@ const PlacesList = ({hotels}) => {
           rating={hotel.rating}
           title={hotel.title}
           type={hotel.type}
+          isActive={idActive === hotel.id}
+          onMouseEnter={handleMouseEnter}
         />)}
     </div>
   );

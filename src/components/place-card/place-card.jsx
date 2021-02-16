@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 import {PropsValidator} from "../../utils";
 
 const PlaceCard = ({
@@ -10,10 +11,15 @@ const PlaceCard = ({
   price,
   rating,
   title,
-  type
+  type,
+  onMouseEnter,
 }) => {
+  const handleMouseEnter = () => {
+    onMouseEnter(id);
+  };
+
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card" onMouseEnter={handleMouseEnter}>
       {isPremium ? `
       <div className="place-card__mark">
         <span>Premium</span>
@@ -52,7 +58,8 @@ const PlaceCard = ({
 };
 
 PlaceCard.propTypes = {
-  ...PropsValidator.PLACE_CARD
+  ...PropsValidator.PLACE_CARD,
+  onMouseEnter: PropTypes.func
 };
 
 export default PlaceCard;
