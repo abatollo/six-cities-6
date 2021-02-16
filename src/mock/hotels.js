@@ -27,9 +27,9 @@ const HOTELS = [
       zoom: 8
     },
     maxAdults: 4,
-    previewImage: `img/1.png`,
+    previewImage: `img/apartment-01.jpg`,
     price: 120,
-    rating: 4.8,
+    rating: 1.8,
     title: `Beautiful & luxurious studio at great location`,
     type: `apartment`
   },
@@ -53,7 +53,7 @@ const HOTELS = [
     },
     id: 2,
     images: [`img/1.png`, `img/2.png`],
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     location: {
       latitude: 52.35514938496378,
@@ -61,9 +61,9 @@ const HOTELS = [
       zoom: 8
     },
     maxAdults: 4,
-    previewImage: `img/1.png`,
-    price: 120,
-    rating: 4.8,
+    previewImage: `img/apartment-02.jpg`,
+    price: 109,
+    rating: 4.3,
     title: `Beautiful & luxurious studio at great location`,
     type: `apartment`
   },
@@ -95,9 +95,9 @@ const HOTELS = [
       zoom: 8
     },
     maxAdults: 4,
-    previewImage: `img/1.png`,
-    price: 120,
-    rating: 4.8,
+    previewImage: `img/apartment-03.jpg`,
+    price: 150,
+    rating: 3.5,
     title: `Beautiful & luxurious studio at great location`,
     type: `apartment`
   },
@@ -129,9 +129,9 @@ const HOTELS = [
       zoom: 8
     },
     maxAdults: 4,
-    previewImage: `img/1.png`,
-    price: 120,
-    rating: 4.8,
+    previewImage: `img/apartment-01.jpg`,
+    price: 299,
+    rating: 1.2,
     title: `Beautiful & luxurious studio at great location`,
     type: `apartment`
   },
@@ -155,7 +155,7 @@ const HOTELS = [
     },
     id: 5,
     images: [`img/1.png`, `img/2.png`],
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     location: {
       latitude: 52.35514938496378,
@@ -163,8 +163,8 @@ const HOTELS = [
       zoom: 8
     },
     maxAdults: 4,
-    previewImage: `img/1.png`,
-    price: 120,
+    previewImage: `img/apartment-02.jpg`,
+    price: 99,
     rating: 4.8,
     title: `Beautiful & luxurious studio at great location`,
     type: `apartment`

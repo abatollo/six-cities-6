@@ -8,6 +8,14 @@ const PlacesList = ({hotels}) => {
       {hotels.map((hotel) =>
         <PlaceCard
           key={hotel.id}
+          id={hotel.id}
+          isFavorite={hotel.isFavorite}
+          isPremium={hotel.isPremium}
+          previewImage={hotel.previewImage}
+          price={hotel.price}
+          rating={hotel.rating}
+          title={hotel.title}
+          type={hotel.type}
         />)}
     </div>
   );
