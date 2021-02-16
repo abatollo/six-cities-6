@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Header from "../header/header";
 import PlaceCard from "../place-card/place-card";
 import {PropsValidator} from "../../utils";
