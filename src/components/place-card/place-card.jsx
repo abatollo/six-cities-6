@@ -22,10 +22,11 @@ const PlaceCard = ({
 
   return (
     <article className={`${cardClass === `cities` ? `cities__place-card` : `favorites__card`} place-card`} onMouseEnter={handleMouseEnter}>
-      {isPremium ? `
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>` : ``}
+      {isPremium && cardClass === `cities` &&
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      }
       <div className={`${cardClass}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={previewImage} width={`${cardClass === `cities` ? 260 : 150}`} height={`${cardClass === `cities` ? 200 : 110}`} alt="Place image" />

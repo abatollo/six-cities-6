@@ -20,7 +20,7 @@ const HOTELS = [
     id: 1,
     images: [`img/1.png`, `img/2.png`],
     isFavorite: false,
-    isPremium: false,
+    isPremium: true,
     location: {
       latitude: 52.35514938496378,
       longitude: 4.673877537499948,
@@ -88,7 +88,7 @@ const HOTELS = [
     id: 3,
     images: [`img/1.png`, `img/2.png`],
     isFavorite: false,
-    isPremium: false,
+    isPremium: true,
     location: {
       latitude: 52.35514938496378,
       longitude: 4.673877537499948,
