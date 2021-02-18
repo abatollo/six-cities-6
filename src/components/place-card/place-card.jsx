@@ -31,7 +31,7 @@ const PlaceCard = ({
           <img className="place-card__image" src={previewImage} width={`${cardClass === `cities` ? 260 : 150}`} height={`${cardClass === `cities` ? 200 : 110}`} alt="Place image" />
         </a>
       </div>
-      <div className={`${cardClass === `favorites` && `favorites__card-info`} place-card__info`}>
+      <div className={`${cardClass === `favorites` ? `favorites__card-info ` : ``}place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro; {price}</b>
