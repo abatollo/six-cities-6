@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../header/header";
-import FeedbackForm from "../feedback-form/feedback-form";
+import ReviewForm from "../review-form/review-form";
 
 const PropertyScreen = () => {
   return (
@@ -149,7 +149,7 @@ const PropertyScreen = () => {
                     </div>
                   </li>
                 </ul>
-                <FeedbackForm />
+                <ReviewForm />
               </section>
             </div>
           </div>
