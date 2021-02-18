@@ -50,7 +50,7 @@ const PlaceCard = ({
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={Routes.HOTELS.replace(':id', id)}>{title}</Link>
+          <Link to={Routes.HOTELS.replace(`:id`, id)}>{title}</Link>
         </h2>
         <p className="place-card__type" style={{textTransform: `capitalize`}}>{type}</p>
       </div>
