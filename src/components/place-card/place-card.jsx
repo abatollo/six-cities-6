@@ -14,23 +14,24 @@ const PlaceCard = ({
   title,
   type,
   onMouseEnter,
+  cardClass
 }) => {
   const handleMouseEnter = () => {
     onMouseEnter(id);
   };
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter={handleMouseEnter}>
+    <article className={`${cardClass === `cities` ? `cities__place-card` : `favorites__card`} place-card`} onMouseEnter={handleMouseEnter}>
       {isPremium ? `
       <div className="place-card__mark">
         <span>Premium</span>
       </div>` : ``}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${cardClass}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width={`${cardClass === `cities` ? 260 : 150}`} height={`${cardClass === `cities` ? 200 : 110}`} alt="Place image" />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`${cardClass === `favorites` && `favorites__card-info`} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro; {price}</b>
@@ -60,7 +61,8 @@ const PlaceCard = ({
 
 PlaceCard.propTypes = {
   ...PropsValidator.PLACE_CARD,
-  onMouseEnter: PropTypes.func
+  onMouseEnter: PropTypes.func,
+  cardClass: PropTypes.string
 };
 
 export default PlaceCard;

@@ -24,6 +24,7 @@ const PlacesList = ({hotels}) => {
           type={hotel.type}
           isActive={idActive === hotel.id}
           onMouseEnter={handleMouseEnter}
+          cardClass="cities"
         />)}
     </div>
   );

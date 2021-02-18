@@ -1,5 +1,5 @@
 import React from "react";
-import FavoritesCard from "../favorites-card/favorites-card";
+import PlaceCard from "../place-card/place-card";
 import {PropsValidator} from "../../utils";
 
 const FavoritesList = ({hotels}) => {
@@ -15,7 +15,7 @@ const FavoritesList = ({hotels}) => {
         </div>
         <div className="favorites__places">
           {hotels.map((hotel) =>
-            <FavoritesCard
+            <PlaceCard
               key={hotel.id}
               id={hotel.id}
               isFavorite={hotel.isFavorite}
@@ -25,6 +25,7 @@ const FavoritesList = ({hotels}) => {
               rating={hotel.rating}
               title={hotel.title}
               type={hotel.type}
+              cardClass="favorites"
             />)}
         </div>
       </li>
