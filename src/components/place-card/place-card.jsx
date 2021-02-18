@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import {PropsValidator} from "../../utils";
+import {Routes} from "../../routes";
 
 const PlaceCard = ({
   id,
@@ -49,7 +50,7 @@ const PlaceCard = ({
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/hotels/${id}`}>{title}</Link>
+          <Link to={Routes.HOTELS.replace(':id', id)}>{title}</Link>
         </h2>
         <p className="place-card__type" style={{textTransform: `capitalize`}}>{type}</p>
       </div>
