@@ -25,7 +25,7 @@ const FavoritesList = ({hotels}) => {
               rating={hotel.rating}
               title={hotel.title}
               type={hotel.type}
-              cardClass="favorites"
+              cardType="favorites"
             />)}
         </div>
       </li>

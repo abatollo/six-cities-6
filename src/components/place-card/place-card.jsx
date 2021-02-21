@@ -14,25 +14,35 @@ const PlaceCard = ({
   title,
   type,
   onMouseEnter,
-  cardClass
+  cardType
 }) => {
   const handleMouseEnter = () => {
     onMouseEnter(id);
   };
 
+  const imageWidths = {
+    cities: 260,
+    favorites: 150
+  }
+
+  const imageHeights = {
+    cities: 200,
+    favorites: 110
+  }
+
   return (
-    <article className={`${cardClass === `cities` ? `cities__place-card` : `favorites__card`} place-card`} onMouseEnter={handleMouseEnter}>
-      {isPremium && cardClass === `cities` &&
+    <article className={`${cardType === `cities` ? `cities__place-card` : `favorites__card`} place-card`} onMouseEnter={handleMouseEnter}>
+      {isPremium && cardType === `cities` &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       }
-      <div className={`${cardClass}__image-wrapper place-card__image-wrapper`}>
+      <div className={`${cardType}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={previewImage} width={`${cardClass === `cities` ? 260 : 150}`} height={`${cardClass === `cities` ? 200 : 110}`} alt="Place image" />
+          <img className="place-card__image" src={previewImage} width={imageWidths[cardType]} height={imageHeights[cardType]} alt="Place image" />
         </a>
       </div>
-      <div className={`${cardClass === `favorites` ? `favorites__card-info ` : ``}place-card__info`}>
+      <div className={`${cardType === `favorites` ? `favorites__card-info ` : ``}place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro; {price}</b>
@@ -63,7 +73,7 @@ const PlaceCard = ({
 PlaceCard.propTypes = {
   ...PropsValidator.PLACE_CARD,
   onMouseEnter: PropTypes.func,
-  cardClass: PropTypes.string
+  cardType: PropTypes.string
 };
 
 export default PlaceCard;
