@@ -23,12 +23,12 @@ const PlaceCard = ({
   const imageWidths = {
     cities: 260,
     favorites: 150
-  }
+  };
 
   const imageHeights = {
     cities: 200,
     favorites: 110
-  }
+  };
 
   return (
     <article className={`${cardType === `cities` ? `cities__place-card` : `favorites__card`} place-card`} onMouseEnter={handleMouseEnter}>
