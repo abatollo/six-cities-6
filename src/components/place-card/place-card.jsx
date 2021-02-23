@@ -17,7 +17,9 @@ const PlaceCard = ({
   cardType
 }) => {
   const handleMouseEnter = () => {
-    onMouseEnter(id);
+    if (onMouseEnter) {
+      onMouseEnter(id);
+    }
   };
 
   const imageWidths = {
