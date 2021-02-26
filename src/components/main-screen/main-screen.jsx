@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../header/header";
-import PlacesList from "../places-list/places-list";
+import PlacesList from "../main-list/main-list";
+import PropTypes from "prop-types";
 import {PropsValidator} from "../../utils";
 
 const MainScreen = (props) => {
@@ -81,7 +82,7 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  hotels: PropsValidator.HOTELS
+  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
 };
 
 export default MainScreen;

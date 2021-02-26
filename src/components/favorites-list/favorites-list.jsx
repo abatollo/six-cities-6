@@ -1,6 +1,7 @@
 import React from "react";
-import PlaceCard from "../place-card/place-card";
 import {PropsValidator} from "../../utils";
+import PropTypes from "prop-types";
+import FavoriteCard from "../favorite-card/favorite-card";
 
 const FavoritesList = ({hotels}) => {
   return (
@@ -15,17 +16,9 @@ const FavoritesList = ({hotels}) => {
         </div>
         <div className="favorites__places">
           {hotels.map((hotel) =>
-            <PlaceCard
+            <FavoriteCard
               key={hotel.id}
-              id={hotel.id}
-              isFavorite={hotel.isFavorite}
-              isPremium={hotel.isPremium}
-              previewImage={hotel.previewImage}
-              price={hotel.price}
-              rating={hotel.rating}
-              title={hotel.title}
-              type={hotel.type}
-              cardType="favorites"
+              hotel={hotel}
             />)}
         </div>
       </li>
@@ -34,7 +27,7 @@ const FavoritesList = ({hotels}) => {
 };
 
 FavoritesList.propTypes = {
-  hotels: PropsValidator.HOTELS
+  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
 };
 
 export default FavoritesList;

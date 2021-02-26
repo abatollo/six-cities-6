@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../header/header";
 import FavoritesList from "../favorites-list/favorites-list";
+import PropTypes from "prop-types";
 import {PropsValidator} from "../../utils";
 
 const FavoritesScreen = ({hotels}) => {
@@ -26,7 +27,7 @@ const FavoritesScreen = ({hotels}) => {
 };
 
 FavoritesScreen.propTypes = {
-  hotels: PropsValidator.HOTELS
+  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
 };
 
 export default FavoritesScreen;
