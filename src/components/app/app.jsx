@@ -21,7 +21,7 @@ const App = (props) => {
           <LoginScreen />
         </Route>
         <Route exact path={Routes.FAVORITES}>
-          <FavoritesScreen />
+          <FavoritesScreen hotels={hotels} />
         </Route>
         <Route exact path={Routes.HOTELS}>
           <PropertyScreen />

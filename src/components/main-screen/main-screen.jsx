@@ -1,7 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Header from "../header/header";
-import PlaceCard from "../place-card/place-card";
+import PlacesList from "../main-list/main-list";
+import PropTypes from "prop-types";
+import {PropsValidator} from "../../utils";
 
 const MainScreen = (props) => {
   const {hotels} = props;
@@ -68,11 +69,7 @@ const MainScreen = (props) => {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {hotels.map((hotel) => <PlaceCard
-                  key={hotel.id}
-                />)}
-              </div>
+              <PlacesList hotels={hotels} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -85,45 +82,7 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  hotels: PropTypes.arrayOf(
-      PropTypes.shape({
-        bedrooms: PropTypes.number.isRequired,
-        city: PropTypes.shape({
-          location: PropTypes.shape({
-            latitude: PropTypes.number.isRequired,
-            longitude: PropTypes.number.isRequired,
-            zoom: PropTypes.number.isRequired
-          }),
-          name: PropTypes.string.isRequired
-        }),
-        description: PropTypes.string.isRequired,
-        goods: PropTypes.arrayOf(
-            PropTypes.string.isRequired
-        ),
-        host: PropTypes.shape({
-          avatarUrl: PropTypes.string.isRequired,
-          id: PropTypes.number.isRequired,
-          isPro: PropTypes.bool.isRequired,
-          name: PropTypes.string.isRequired
-        }),
-        id: PropTypes.number.isRequired,
-        images: PropTypes.arrayOf(
-            PropTypes.string.isRequired
-        ),
-        isFavorite: PropTypes.bool.isRequired,
-        isPremium: PropTypes.bool.isRequired,
-        location: PropTypes.shape({
-          latitude: PropTypes.number.isRequired,
-          longitude: PropTypes.number.isRequired,
-          zoom: PropTypes.number.isRequired
-        }),
-        maxAdults: PropTypes.number.isRequired,
-        previewImage: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        rating: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired
-      })).isRequired
+  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
 };
 
 export default MainScreen;
