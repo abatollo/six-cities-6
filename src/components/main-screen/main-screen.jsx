@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../header/header";
 import PlacesList from "../main-list/main-list";
+import Map from "../map/map";
 import PropTypes from "prop-types";
 import {PropsValidator} from "../../utils";
 
@@ -72,7 +73,7 @@ const MainScreen = (props) => {
               <PlacesList hotels={hotels} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map hotels={hotels} />
             </div>
           </div>
         </div>
