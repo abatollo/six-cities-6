@@ -4,8 +4,9 @@ import ReviewForm from "../review-form/review-form";
 import ReviewsList from "../reviews-list/reviews-list";
 import PropTypes from "prop-types";
 import {PropsValidator} from "../../utils";
+import Map from "../map/map";
 
-const PropertyScreen = ({comments}) => {
+const PropertyScreen = ({hotels, comments}) => {
   return (
     <div className="page">
       <Header />
@@ -132,7 +133,9 @@ const PropertyScreen = ({comments}) => {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            <Map hotels={hotels.slice(0, 3)} isMainMap={false} />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
@@ -242,7 +245,8 @@ const PropertyScreen = ({comments}) => {
 };
 
 PropertyScreen.propTypes = {
-  comments: PropTypes.arrayOf(PropsValidator.COMMENT).isRequired
+  comments: PropTypes.arrayOf(PropsValidator.COMMENT).isRequired,
+  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
 };
 
 export default PropertyScreen;
