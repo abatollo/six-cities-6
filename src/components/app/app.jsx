@@ -10,6 +10,7 @@ import NotFoundScreen from "../not-found-screen/not-found-screen";
 
 const App = (props) => {
   const {hotels} = props;
+  const {comments} = props;
 
   return (
     <BrowserRouter>
@@ -24,7 +25,7 @@ const App = (props) => {
           <FavoritesScreen hotels={hotels} />
         </Route>
         <Route exact path={Routes.HOTELS}>
-          <PropertyScreen />
+          <PropertyScreen comments={comments} />
         </Route>
         <Route>
           <NotFoundScreen />
@@ -35,7 +36,8 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  hotels: PropTypes.array.isRequired
+  hotels: PropTypes.array.isRequired,
+  comments: PropTypes.array.isRequired
 };
 
 export default App;
