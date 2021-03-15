@@ -135,7 +135,7 @@ const PropertyScreen = ({hotels, comments}) => {
             </div>
           </div>
           <section className="property__map map">
-            <Map hotels={hotels.slice(0, 3)} isMainMap={false} />
+            <Map hotels={hotels.slice(0, 3)} size="small" />
           </section>
         </section>
         <div className="container">

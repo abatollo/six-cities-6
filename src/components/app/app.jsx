@@ -8,9 +8,7 @@ import FavoritesScreen from "../favorites-screen/favorites-screen";
 import PropertyScreen from "../property-screen/property-screen";
 import NotFoundScreen from "../not-found-screen/not-found-screen";
 
-const App = (props) => {
-  const {hotels} = props;
-  const {comments} = props;
+const App = ({hotels, comments}) => {
 
   return (
     <BrowserRouter>

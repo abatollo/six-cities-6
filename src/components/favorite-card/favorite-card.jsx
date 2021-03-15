@@ -2,10 +2,8 @@ import React from "react";
 import CardFragment from "../card-fragment/card-fragment";
 import {PropsValidator} from "../../utils";
 
-const FavoriteCard = (props) => {
-  const hotel = props.hotel;
-
-  const {previewImage} = props.hotel;
+const FavoriteCard = ({hotel}) => {
+  const {previewImage} = hotel;
 
   return (
     <article className="favorites__card place-card">

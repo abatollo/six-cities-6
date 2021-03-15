@@ -73,7 +73,7 @@ const MainScreen = (props) => {
               <PlacesList hotels={hotels} />
             </section>
             <div className="cities__right-section">
-              <Map hotels={hotels} isMainMap={true} />
+              <Map hotels={hotels} size="auto" />
             </div>
           </div>
         </div>

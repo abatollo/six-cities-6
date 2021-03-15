@@ -4,8 +4,13 @@ import PropTypes from "prop-types";
 import {PropsValidator} from "../../utils";
 import 'leaflet/dist/leaflet.css';
 
-const Map = ({hotels, isMainMap}) => {
+const Map = ({hotels, size}) => {
   const mapRef = useRef();
+
+  const Sizes = {
+    auto: `auto`,
+    small: `579px`
+  };
 
   useEffect(() => {
     mapRef.current = leaflet.map(`map`, {
@@ -41,13 +46,13 @@ const Map = ({hotels, isMainMap}) => {
   }, []);
 
   return (
-    <section id="map" className="cities__map map" ref={mapRef} style={isMainMap ? {height: `auto`} : {height: `579px`}} />
+    <section id="map" className="cities__map map" ref={mapRef} style={{height: `${Sizes[size]}`}} />
   );
 };
 
 Map.propTypes = {
   hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired,
-  isMainMap: PropTypes.bool.isRequired
+  size: PropTypes.oneOf([`auto`, `small`])
 };
 
 export default Map;

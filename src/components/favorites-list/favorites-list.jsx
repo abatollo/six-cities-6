@@ -4,23 +4,22 @@ import PropTypes from "prop-types";
 import FavoriteCityList from "../favorite-city-list/favorite-city-list";
 
 const FavoritesList = ({hotels}) => {
-  const citiesWithHotels = {};
-
-  for (const hotel of hotels) {
-    if (hotel.city.name in citiesWithHotels) {
-      citiesWithHotels[hotel.city.name].push(hotel);
+  const citiesWithHotels = hotels.reduce((byCities, hotel) => {
+    if (hotel.city.name in byCities) {
+      byCities[hotel.city.name].push(hotel);
     } else {
-      citiesWithHotels[hotel.city.name] = [];
-      citiesWithHotels[hotel.city.name].push(hotel);
+      byCities[hotel.city.name] = [hotel];
     }
-  }
+  
+    return byCities;
+  }, {})
 
   return (
     <ul className="favorites__list">
-      {Object.values(citiesWithHotels).map((cityWithHotels, index) =>
-        <FavoriteCityList
-          key={index}
-          hotels={cityWithHotels}
+      {Object.entries(citiesWithHotels).map(([city, hotels]) => <FavoriteCityList
+          key={city}
+          city={city}
+          hotels={hotels}
         />
       )}
     </ul>
