@@ -25,7 +25,8 @@ const FavoriteCityList = ({city, hotels}) => {
 };
 
 FavoriteCityList.propTypes = {
-  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
+  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired,
+  city: PropTypes.string.isRequired
 };
 
 export default FavoriteCityList;

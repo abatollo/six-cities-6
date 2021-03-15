@@ -10,17 +10,17 @@ const FavoritesList = ({hotels}) => {
     } else {
       byCities[hotel.city.name] = [hotel];
     }
-  
+
     return byCities;
-  }, {})
+  }, {});
 
   return (
     <ul className="favorites__list">
-      {Object.entries(citiesWithHotels).map(([city, hotels]) => <FavoriteCityList
-          key={city}
-          city={city}
-          hotels={hotels}
-        />
+      {Object.entries(citiesWithHotels).map(([city, cityHotels]) => <FavoriteCityList
+        key={city}
+        city={city}
+        hotels={cityHotels}
+      />
       )}
     </ul>
   );
