@@ -1,16 +1,11 @@
 import React, {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import PropTypes from "prop-types";
-import {PropsValidator} from "../../utils";
+import {PropsValidator, MapSizes} from "../../utils";
 import 'leaflet/dist/leaflet.css';
 
 const Map = ({hotels, size}) => {
   const mapRef = useRef();
-
-  const Sizes = {
-    auto: `auto`,
-    small: `579px`
-  };
 
   useEffect(() => {
     mapRef.current = leaflet.map(`map`, {
@@ -46,7 +41,7 @@ const Map = ({hotels, size}) => {
   }, []);
 
   return (
-    <section id="map" className="cities__map map" ref={mapRef} style={{height: `${Sizes[size]}`}} />
+    <section id="map" className="cities__map map" ref={mapRef} style={{height: `${MapSizes[size]}`}} />
   );
 };
 

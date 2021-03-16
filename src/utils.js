@@ -53,4 +53,9 @@ const PropsValidator = {
   }).isRequired
 };
 
-export {PropsValidator};
+const MapSizes = {
+  auto: `auto`,
+  small: `579px`
+};
+
+export {PropsValidator, MapSizes};
