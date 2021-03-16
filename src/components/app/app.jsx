@@ -8,8 +8,7 @@ import FavoritesScreen from "../favorites-screen/favorites-screen";
 import PropertyScreen from "../property-screen/property-screen";
 import NotFoundScreen from "../not-found-screen/not-found-screen";
 
-const App = (props) => {
-  const {hotels} = props;
+const App = ({hotels, comments}) => {
 
   return (
     <BrowserRouter>
@@ -24,7 +23,7 @@ const App = (props) => {
           <FavoritesScreen hotels={hotels} />
         </Route>
         <Route exact path={Routes.HOTELS}>
-          <PropertyScreen />
+          <PropertyScreen hotels={hotels} comments={comments} />
         </Route>
         <Route>
           <NotFoundScreen />
@@ -35,7 +34,8 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  hotels: PropTypes.array.isRequired
+  hotels: PropTypes.array.isRequired,
+  comments: PropTypes.array.isRequired
 };
 
 export default App;

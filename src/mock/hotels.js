@@ -7,7 +7,7 @@ const HOTELS = [
         longitude: 4.9,
         zoom: 12
       },
-      name: `Amsterdam`
+      name: `Paris`
     },
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
@@ -41,7 +41,7 @@ const HOTELS = [
         longitude: 4.895168,
         zoom: 10
       },
-      name: `Amsterdam`
+      name: `St. Petersburg`
     },
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],

@@ -1,27 +1,27 @@
 import React from "react";
 import {PropsValidator} from "../../utils";
 import PropTypes from "prop-types";
-import FavoriteCard from "../favorite-card/favorite-card";
+import FavoriteCityList from "../favorite-city-list/favorite-city-list";
 
 const FavoritesList = ({hotels}) => {
+  const citiesWithHotels = hotels.reduce((byCities, hotel) => {
+    if (hotel.city.name in byCities) {
+      byCities[hotel.city.name].push(hotel);
+    } else {
+      byCities[hotel.city.name] = [hotel];
+    }
+
+    return byCities;
+  }, {});
+
   return (
     <ul className="favorites__list">
-      <li className="favorites__locations-items">
-        <div className="favorites__locations locations locations--current">
-          <div className="locations__item">
-            <a className="locations__item-link" href="#">
-              <span>Amsterdam</span>
-            </a>
-          </div>
-        </div>
-        <div className="favorites__places">
-          {hotels.map((hotel) =>
-            <FavoriteCard
-              key={hotel.id}
-              hotel={hotel}
-            />)}
-        </div>
-      </li>
+      {Object.entries(citiesWithHotels).map(([city, cityHotels]) => <FavoriteCityList
+        key={city}
+        city={city}
+        hotels={cityHotels}
+      />
+      )}
     </ul>
   );
 };
