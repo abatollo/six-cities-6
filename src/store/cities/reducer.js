@@ -5,7 +5,7 @@ import comments from '../../mock/comments';
 
 const initialState = {
   currentCity: `Paris`,
-  hotels,
+  hotels: [],
   comments
 };
 
