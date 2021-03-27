@@ -19,7 +19,7 @@ const HOTELS = [
     },
     id: 1,
     images: [`img/1.png`, `img/2.png`],
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     location: {
       latitude: 52.3909553943508,
@@ -41,7 +41,7 @@ const HOTELS = [
         longitude: 4.895168,
         zoom: 10
       },
-      name: `St. Petersburg`
+      name: `Dusseldorf`
     },
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
@@ -87,7 +87,7 @@ const HOTELS = [
     },
     id: 3,
     images: [`img/1.png`, `img/2.png`],
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     location: {
       latitude: 52.3909553943508,
@@ -137,6 +137,4 @@ const HOTELS = [
   }
 ];
 
-export const getHotels = () => {
-  return HOTELS;
-};
+export default HOTELS;

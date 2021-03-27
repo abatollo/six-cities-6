@@ -1,18 +1,20 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import MainCard from "../main-card/main-card";
-import PropTypes from "prop-types";
-import {PropsValidator} from "../../utils";
+import PropTypes from 'prop-types';
+import PlaceOffer from '../place-offer/place-offer';
+import {PropsValidator} from '../../utils';
 
-const MainList = ({hotels, currentCity}) => {
+const PlacesList = ({hotels, currentCity}) => {
   const [idActive, setIdActive] = useState(hotels[0].id);
 
-  const filteredHotels = hotels.filter((hotel) => hotel.city.name === currentCity);
+  const handleMouseEnter = (id) => {
+    setIdActive(id);
+  };
 
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">{filteredHotels.length} places to stay in {currentCity}</b>
+      <b className="places__found">{hotels.length} places to stay in {currentCity}</b>
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by </span>
         <span className="places__sorting-type" tabIndex={0}>
@@ -28,28 +30,36 @@ const MainList = ({hotels, currentCity}) => {
           <li className="places__option" tabIndex={0}>Top rated first</li>
         </ul>
       </form>
-      <div className="cities__places-list places__list tabs__content" data-active-hotel={idActive}>
-        {filteredHotels.map((hotel) =>
-          <MainCard
+      <div className="cities__places-list places__list tabs__content">
+        {hotels.map((hotel) =>
+          <PlaceOffer
             key={hotel.id}
-            hotel={hotel}
-            onMouseOver={setIdActive}
+            id={hotel.id}
+            title={hotel.title}
+            image={hotel.preview_image}
+            price={hotel.price}
+            rating={hotel.rating}
+            type={hotel.type}
+            isFavorite={hotel.is_favorite}
+            isPremium={hotel.is_premium}
+            isActive={idActive === hotel.id}
+            onMouseEnter={handleMouseEnter}
           />)}
       </div>
     </section>
   );
 };
 
-MainList.propTypes = {
-  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired,
-  currentCity: PropTypes.string.isRequired
+PlacesList.propTypes = {
+  hotels: PropsValidator.HOTELS,
+  currentCity: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
   return {
-    hotels: state.cities.hotels,
+    hotels: state.cities.offers,
     currentCity: state.cities.currentCity
   };
 };
 
-export default connect(mapStateToProps, null)(MainList);
+export default connect(mapStateToProps, null)(PlacesList);
