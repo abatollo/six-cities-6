@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {CitiesActionCreator} from '../../store/action';
+import {CitiesActionCreator} from '../../store/cities/action';
 
 import {CITIES} from '../../utils.js';
 

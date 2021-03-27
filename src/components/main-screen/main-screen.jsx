@@ -4,8 +4,9 @@ import Header from "../header/header";
 import MainList from "../main-list/main-list";
 import Map from "../map/map";
 import CitiesList from '../cities-list/cities-list';
+import MainListEmpty from "../main-list-empty/main-list-empty"
 import PropTypes from "prop-types";
-import {PropsValidator} from "../../utils";
+import {PropsValidator, sortOffers, filterOffersByCity} from "../../utils";
 
 const MainScreen = ({hotels, currentCity}) => {
   const filteredHotels = hotels.filter((hotel) => hotel.city.name === currentCity);
@@ -20,7 +21,11 @@ const MainScreen = ({hotels, currentCity}) => {
         </div>
         <div className="cities">
           <div className="cities__places-container container">
-            <MainList />
+            {
+              hotels.length ?
+                <MainList hotels={hotels} /> :
+                <MainListEmpty />
+            }
             <div className="cities__right-section">
               <Map hotels={filteredHotels} size="auto" />
             </div>
@@ -38,7 +43,7 @@ MainScreen.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    hotels: state.cities.hotels,
+    hotels: sortOffers(state.sort.currentSort, filterOffersByCity(state.cities.currentCity, state.cities.hotels)),
     currentCity: state.cities.currentCity
   };
 };
