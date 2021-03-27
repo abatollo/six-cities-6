@@ -9,7 +9,9 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {rootReducer} from './store/root-reducer';
 
 import {createAPI} from "./services/api";
+import {checkAuth} from "./store/api-actions";
 import {AuthorizationActionCreator} from './store/authorization/action';
+import {redirect} from "./store/middlewares/redirect";
 import {AuthorizationStatus} from "./utils";
 
 const api = createAPI(
@@ -19,9 +21,12 @@ const api = createAPI(
 const store = createStore(
     rootReducer,
     composeWithDevTools(
-        applyMiddleware(thunk.withExtraArgument(api))
+        applyMiddleware(thunk.withExtraArgument(api)),
+        applyMiddleware(redirect)
     )
 );
+
+store.dispatch(checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
