@@ -7,7 +7,8 @@ import CitiesList from '../cities-list/cities-list';
 import PropTypes from "prop-types";
 import {PropsValidator} from "../../utils";
 
-const MainScreen = ({hotels}) => {
+const MainScreen = ({hotels, currentCity}) => {
+  const filteredHotels = hotels.filter((hotel) => hotel.city.name === currentCity);
 
   return (
     <div className="page page--gray page--main">
@@ -21,7 +22,7 @@ const MainScreen = ({hotels}) => {
           <div className="cities__places-container container">
             <MainList />
             <div className="cities__right-section">
-              <Map hotels={hotels} size="auto" />
+              <Map hotels={filteredHotels} size="auto" />
             </div>
           </div>
         </div>
@@ -31,12 +32,14 @@ const MainScreen = ({hotels}) => {
 };
 
 MainScreen.propTypes = {
-  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
+  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired,
+  currentCity: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    hotels: state.cities.hotels
+    hotels: state.cities.hotels,
+    currentCity: state.cities.currentCity
   };
 };
 
