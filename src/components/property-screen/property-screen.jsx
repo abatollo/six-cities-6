@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from 'react-redux';
 import Header from "../header/header";
 import ReviewForm from "../review-form/review-form";
 import ReviewsList from "../reviews-list/reviews-list";
@@ -156,4 +157,11 @@ PropertyScreen.propTypes = {
   hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
 };
 
-export default PropertyScreen;
+const mapStateToProps = (state) => {
+  return {
+    hotels: state.cities.hotels,
+    comments: state.cities.comments
+  };
+};
+
+export default connect(mapStateToProps, null)(PropertyScreen);

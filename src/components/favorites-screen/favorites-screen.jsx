@@ -1,19 +1,16 @@
 import React from "react";
 import Header from "../header/header";
 import FavoritesList from "../favorites-list/favorites-list";
-import PropTypes from "prop-types";
-import {PropsValidator} from "../../utils";
 
-const FavoritesScreen = ({hotels}) => {
+const FavoritesScreen = () => {
   return (
     <div className="page">
       <Header />
-
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <FavoritesList hotels={hotels} />
+            <FavoritesList />
           </section>
         </div>
       </main>
@@ -24,10 +21,6 @@ const FavoritesScreen = ({hotels}) => {
       </footer>
     </div>
   );
-};
-
-FavoritesScreen.propTypes = {
-  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
 };
 
 export default FavoritesScreen;

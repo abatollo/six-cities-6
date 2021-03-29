@@ -1,14 +1,17 @@
 import React from "react";
+import {connect} from 'react-redux';
 import {PropsValidator} from "../../utils";
 import PropTypes from "prop-types";
 import FavoriteCityList from "../favorite-city-list/favorite-city-list";
 
 const FavoritesList = ({hotels}) => {
   const citiesWithHotels = hotels.reduce((byCities, hotel) => {
-    if (hotel.city.name in byCities) {
-      byCities[hotel.city.name].push(hotel);
-    } else {
-      byCities[hotel.city.name] = [hotel];
+    if (hotel.isFavorite) {
+      if (hotel.city.name in byCities) {
+        byCities[hotel.city.name].push(hotel);
+      } else {
+        byCities[hotel.city.name] = [hotel];
+      }
     }
 
     return byCities;
@@ -30,4 +33,10 @@ FavoritesList.propTypes = {
   hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
 };
 
-export default FavoritesList;
+const mapStateToProps = (state) => {
+  return {
+    hotels: state.cities.hotels
+  };
+};
+
+export default connect(mapStateToProps, null)(FavoritesList);

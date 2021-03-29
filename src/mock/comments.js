@@ -49,6 +49,4 @@ const COMMENTS = [
   }
 ];
 
-export const getComments = () => {
-  return COMMENTS;
-};
+export default COMMENTS;

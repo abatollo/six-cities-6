@@ -53,4 +53,42 @@ const PropsValidator = {
   }).isRequired
 };
 
-export {PropsValidator};
+const MapSizes = {
+  auto: `auto`,
+  small: `579px`
+};
+
+const CITIES = [
+  {
+    title: `Paris`,
+    url: `paris`,
+    id: `1`
+  },
+  {
+    title: `Cologne`,
+    url: `cologne`,
+    id: `2`
+  },
+  {
+    title: `Brussels`,
+    url: `brussels`,
+    id: `3`
+  },
+  {
+    title: `Amsterdam`,
+    url: `amsterdam`,
+    id: `4`
+  },
+  {
+    title: `Hamburg`,
+    url: `hamburg`,
+    id: `5`
+  },
+  {
+    title: `Dusseldorf`,
+    url: `dusseldorf`,
+    id: `6`
+  }
+];
+
+export {PropsValidator, MapSizes, CITIES};
