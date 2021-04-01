@@ -1,9 +1,10 @@
-import React from "react";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
-import {Routes} from "../../routes";
-import {AuthorizationStatus} from "../../utils";
-import PropTypes from "prop-types";
+import React from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import {Routes} from '../../routes';
+import {AuthorizationStatus} from '../../utils';
 
 const Header = ({authorizationStatus}) => {
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;

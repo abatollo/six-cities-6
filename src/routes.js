@@ -1,3 +1,5 @@
+import {FavoriteStatus} from './utils';
+
 const Routes = {
   MAIN: `/`,
   LOGIN: `/login`,
@@ -8,7 +10,8 @@ const Routes = {
 const APIRoutes = {
   HOTELS: `/hotels`,
   LOGIN: `/login`,
-  LOGOUT: `/logout`
+  LOGOUT: `/logout`,
+  COMMENTS: `/comments`
 };
 
 const APIRouteMethods = {

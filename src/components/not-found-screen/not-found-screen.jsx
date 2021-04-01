@@ -1,5 +1,6 @@
-import React from "react";
-import Header from "../header/header";
+import React from 'react';
+
+import Header from '../header/header';
 
 const NotFoundPage = () => {
   return (

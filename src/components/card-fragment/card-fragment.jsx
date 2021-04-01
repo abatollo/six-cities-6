@@ -1,7 +1,8 @@
-import React from "react";
-import {Link} from "react-router-dom";
-import {PropsValidator} from "../../utils";
-import {Routes} from "../../routes";
+import React from 'react';
+import {Link} from 'react-router-dom';
+
+import {PropsValidator} from '../../utils';
+import {Routes} from '../../routes';
 
 const CardFragment = (props) => {
   const hotel = props.hotel;

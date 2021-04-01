@@ -1,9 +1,9 @@
-import {AuthorizationActionCreator} from "./authorization/action";
-import {CitiesActionCreator} from "./cities/action";
-import {RoomActionCreator} from "./room/action";
-import {DataActionCreator} from "./data/action";
-import {AuthorizationStatus} from "../utils";
-import {APIRoutes, APIRouteMethods, Routes} from "../routes";
+import {AuthorizationActionCreator} from './authorization/action';
+import {CitiesActionCreator} from './cities/action';
+import {RoomActionCreator} from './room/action';
+import {DataActionCreator, getComments, setComments} from './data/action';
+import {AuthorizationStatus} from '../utils';
+import {APIRoutes, APIRouteMethods, Routes} from '../routes';
 
 export const fetchHotelsList = () => (dispatch, _getState, api) => (
   api.get(APIRoutes.HOTELS)
@@ -24,16 +24,25 @@ export const fetchRoom = (id) => (dispatch, _getState, api) => (
     })
 );
 
-export const fetchComments = (id) => (dispatch, _getState, api) => (
+// export const fetchComments = (id) => (dispatch, _getState, api) => (
+//   api.get(APIRouteMethods.getHotelComments(id))
+//     .then(({data}) => {
+//       dispatch(RoomActionCreator.setCommentsRoom(data));
+//       dispatch(DataActionCreator.setCommentsLoaded(true));
+//     })
+//     .catch(() => {
+//       dispatch(DataActionCreator.setCommentsLoaded(true));
+//     })
+// );
+
+export const fetchComments = (id) => (dispatch, _getState, api) => {
+  dispatch(getComments());
+
   api.get(APIRouteMethods.getHotelComments(id))
     .then(({data}) => {
-      dispatch(RoomActionCreator.setCommentsRoom(data));
-      dispatch(DataActionCreator.setCommentsLoaded(true));
-    })
-    .catch(() => {
-      dispatch(DataActionCreator.setCommentsLoaded(true));
-    })
-);
+      dispatch(setComments(data));
+    });
+}
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoutes.LOGIN)

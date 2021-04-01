@@ -1,8 +1,9 @@
-import React, {useRef} from "react";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {login, logout} from "../../store/api-actions";
-import Header from "../header/header";
+import React, {useRef} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+
+import {login, logout} from '../../store/api-actions';
+import Header from '../header/header';
 
 const LoginScreen = ({onSubmit, onLoad}) => {
   const loginRef = useRef();

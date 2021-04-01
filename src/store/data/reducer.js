@@ -3,6 +3,7 @@ import {DataActionTypes} from './action';
 const initialState = {
   isHotelsLoaded: false,
   isRoomLoaded: false,
+  comments: [],
   isCommentsLoaded: false
 };
 
@@ -18,10 +19,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         isRoomLoaded: action.payload
       };
-    case DataActionTypes.SET_COMMENTS_LOADED:
+    case 'GET_COMMENTS':
       return {
         ...state,
-        isCommentsLoaded: action.payload
+        isCommentsLoading: true,
+      };
+    case 'SET_COMMENTS':
+      return {
+        ...state,
+        comments: action.payload,
+        isCommentsLoading: false,
       };
     default:
       return state;

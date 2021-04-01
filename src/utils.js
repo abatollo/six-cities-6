@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 const PropsValidator = {
   HOTEL: PropTypes.shape({
@@ -53,6 +53,11 @@ const PropsValidator = {
   }).isRequired
 };
 
+const FavoriteStatus = {
+  ON: 0.1,
+  OFF: 0,
+};
+
 const MapSizes = {
   auto: `auto`,
   small: `579px`
@@ -91,14 +96,14 @@ const CITIES = [
   }
 ];
 
-export const SORT_TYPES = {
+const SORT_TYPES = {
   POPULAR: `popular`,
   LOW_PRICE: `low-price`,
   HIGH_PRICE: `high-price`,
   TOP_RATED: `top-rated`
 };
 
-export const SORT_LIST = [
+const SORT_LIST = [
   {
     text: `Popular`,
     type: SORT_TYPES.POPULAR
@@ -117,9 +122,9 @@ export const SORT_LIST = [
   },
 ];
 
-export const filterOffersByCity = (city, offers) => offers.filter((offer) => offer.city.name === city);
+const filterOffersByCity = (city, offers) => offers.filter((offer) => offer.city.name === city);
 
-export const sortOffers = (currentSort, offers) => {
+const sortOffers = (currentSort, offers) => {
   switch (currentSort) {
     case SORT_TYPES.LOW_PRICE:
       return offers.sort((a, b) => a.price - b.price);
@@ -137,4 +142,4 @@ const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
-export {PropsValidator, MapSizes, CITIES, AuthorizationStatus};
+export {PropsValidator, FavoriteStatus, MapSizes, CITIES, SORT_TYPES, SORT_LIST, filterOffersByCity, sortOffers, AuthorizationStatus};

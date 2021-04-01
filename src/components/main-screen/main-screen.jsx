@@ -1,13 +1,15 @@
-import React from "react";
-import {connect} from "react-redux";
-import Header from "../header/header";
-import MainList from "../main-list/main-list";
-import Map from "../map/map";
-import CitiesList from "../cities-list/cities-list";
-import MainListEmpty from "../main-list-empty/main-list-empty";
-import PropTypes from "prop-types";
-import {PropsValidator, sortOffers, filterOffersByCity} from "../../utils";
-import MainMap from "../map-main/map-main";
+import React from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+
+import Header from '../header/header';
+import MainList from '../main-list/main-list';
+import Map from '../map/map';
+import CitiesList from '../cities-list/cities-list';
+import MainListEmpty from '../main-list-empty/main-list-empty';
+import MainMap from '../map-main/map-main';
+
+import {PropsValidator, sortOffers, filterOffersByCity} from '../../utils';
 
 const MainScreen = ({hotels}) => {
   return (

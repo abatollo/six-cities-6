@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+
 import PlaceOffer from '../place-offer/place-offer';
+
 import {PropsValidator} from '../../utils';
 
 const PlacesList = ({hotels, currentCity}) => {

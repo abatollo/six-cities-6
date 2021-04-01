@@ -2,7 +2,9 @@ import React from 'react';
 
 const LoadingScreen = () => {
   return (
-    <p>Loading ...</p>
+    <p style={{display: `flex`, justifyContent: `center`, alignItems: `center`, minHeight: `100vh`}}>
+      Loading...
+    </p>
   );
 };
 

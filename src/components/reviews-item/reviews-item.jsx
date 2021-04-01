@@ -1,5 +1,6 @@
-import React from "react";
-import {PropsValidator} from "../../utils";
+import React from 'react';
+
+import {PropsValidator} from '../../utils';
 
 const ReviewsItem = ({comment}) => {
   const {comment: commentBody, date, rating, user} = comment;

@@ -1,29 +1,31 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
-import Header from "../header/header";
-import ReviewForm from "../review-form/review-form";
-import ReviewsList from "../reviews-list/reviews-list";
-import PropTypes from "prop-types";
-import {PropsValidator} from "../../utils";
-import Map from "../map/map";
-import MapNearby from "../map-nearby/map-nearby";
-import NearList from "../near-list/near-list";
-import StarRating from "../star-rating/star-rating";
+import PropTypes from 'prop-types';
+
+import Header from '../header/header';
+import ReviewForm from '../review-form/review-form';
+import ReviewsList from '../reviews-list/reviews-list';
+import Map from '../map/map';
+import MapNearby from '../map-nearby/map-nearby';
+import NearList from '../near-list/near-list';
+import StarRating from '../star-rating/star-rating';
 import LoadingScreen from '../loading-screen/loading-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
+
+import {PropsValidator} from '../../utils';
 import {AuthorizationStatus} from '../../utils';
-import {createAPI} from "../../services/api";
-import {APIRouteMethods} from "../../routes";
-import {fetchRoom} from "../../store/api-actions.js";
-import {DataActionCreator} from "../../store/data/action";
+import {createAPI} from '../../services/api';
+import {APIRouteMethods} from '../../routes';
+import {fetchRoom, fetchComments} from '../../store/api-actions.js';
+import {DataActionCreator} from '../../store/data/action';
 
 const api = createAPI();
 const fetchNearbyList = (id) => {
   return api.get(APIRouteMethods.getHotelNearby(id));
 };
 
-const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoadData, setRoomLoaded}) => {
+const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoadData, setRoomLoaded, isCommentsLoading, comments}) => {
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
   const id = +useParams().id;
 
@@ -137,7 +139,7 @@ const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoad
                 </div>
               </div>
               <section className="property__reviews reviews">
-                {/* <ReviewsList comments={comments} /> */}
+              {!isCommentsLoading ? <ReviewsList comments={comments} /> : <LoadingScreen />}
                 {isAuthorized ? <ReviewForm id={id} /> : ``}
               </section>
             </div>
@@ -167,7 +169,7 @@ const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoad
 
 PropertyScreen.propTypes = {
   // comments: PropTypes.arrayOf(PropsValidator.COMMENT),
-  // currentOffer: PropsValidator.HOTEL.isRequired,
+  currentOffer: PropsValidator.HOTEL.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   isRoomLoaded: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,
@@ -178,13 +180,16 @@ const mapStateToProps = (state) => {
   return {
     currentOffer: state.room.currentsRoom,
     isRoomLoaded: state.data.isRoomLoaded,
-    authorizationStatus: state.authorization.authorizationStatus
+    authorizationStatus: state.authorization.authorizationStatus,
+    isCommentsLoading: state.data.isCommentsLoading,
+    comments: state.room.comments,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadData(id) {
     dispatch(fetchRoom(id));
+    dispatch(fetchComments(id));
   },
   setRoomLoaded(value) {
     dispatch(DataActionCreator.setRoomLoaded(value));

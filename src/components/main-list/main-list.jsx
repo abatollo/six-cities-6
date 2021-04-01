@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import MainCard from "../main-card/main-card";
-import PropTypes from "prop-types";
-import {PropsValidator, sortOffers, filterOffersByCity} from "../../utils";
+import PropTypes from 'prop-types';
+
+import MainCard from '../main-card/main-card';
+
+import {PropsValidator, sortOffers, filterOffersByCity} from '../../utils';
 import PlacesSorting from '../places-sorting/places-sorting';
 
 const MainList = ({hotels, currentCity}) => {

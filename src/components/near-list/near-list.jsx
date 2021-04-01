@@ -1,7 +1,9 @@
-import React from "react";
-import {PropsValidator} from "../../utils";
-import PropTypes from "prop-types";
-import NearCard from "../near-card/near-card";
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import NearCard from '../near-card/near-card';
+
+import {PropsValidator} from '../../utils';
 
 const NearList = ({hotels}) => {
   return (

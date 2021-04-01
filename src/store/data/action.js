@@ -18,3 +18,12 @@ export const DataActionCreator = {
     payload: isLoad,
   }),
 };
+
+export const getComments = () => ({
+  type: 'GET_COMMENTS'
+});
+
+export const setComments = payload => ({
+  type: 'SET_COMMENTS',
+  payload
+});

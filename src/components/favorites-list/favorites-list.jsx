@@ -1,8 +1,10 @@
-import React from "react";
+import React from 'react';
 import {connect} from 'react-redux';
-import {PropsValidator} from "../../utils";
-import PropTypes from "prop-types";
-import FavoriteCityList from "../favorite-city-list/favorite-city-list";
+import PropTypes from 'prop-types';
+
+import FavoriteCityList from '../favorite-city-list/favorite-city-list';
+
+import {PropsValidator} from '../../utils';
 
 const FavoritesList = ({hotels}) => {
   const citiesWithHotels = hotels.reduce((byCities, hotel) => {
