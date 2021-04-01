@@ -1,4 +1,4 @@
-import {FavoriteStatus} from './utils';
+import {FavoriteStatus} from './const';
 
 const Routes = {
   MAIN: `/`,

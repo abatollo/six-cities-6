@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {CitiesActionCreator} from '../../store/cities/action';
 
-import {CITIES} from '../../utils.js';
+import {CITIES} from '../../const.js';
 
 const CitiesList = ({currentCity, setCurrentCity}) => {
   return (

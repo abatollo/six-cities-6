@@ -14,7 +14,7 @@ import LoadingScreen from '../loading-screen/loading-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 
 import {PropsValidator} from '../../utils';
-import {AuthorizationStatus} from '../../utils';
+import {AuthorizationStatus} from '../../const';
 import {createAPI} from '../../services/api';
 import {APIRouteMethods} from '../../routes';
 import {fetchRoom, fetchComments} from '../../store/api-actions.js';

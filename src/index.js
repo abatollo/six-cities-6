@@ -12,7 +12,7 @@ import {createAPI} from './services/api';
 import {checkAuth} from './store/api-actions';
 import {AuthorizationActionCreator} from './store/authorization/action';
 import {redirect} from './store/middlewares/redirect';
-import {AuthorizationStatus} from './utils';
+import {AuthorizationStatus} from './const';
 
 const api = createAPI(
     () => store.dispatch(AuthorizationActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))

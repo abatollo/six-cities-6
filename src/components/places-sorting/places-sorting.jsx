@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {SortActionCreator} from '../../store/sort/action';
-import {SORT_LIST} from '../../utils';
+import {SORT_LIST} from '../../const';
 
 const Sort = ({changeSort, currentSort}) => {
   const selectRef = useRef();

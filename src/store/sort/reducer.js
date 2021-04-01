@@ -1,6 +1,6 @@
 import {SortActionTypes} from './action';
 
-import {SORT_TYPES} from '../../utils';
+import {SORT_TYPES} from '../../const';
 
 const initialState = {
   currentSort: SORT_TYPES.POPULAR

@@ -2,7 +2,7 @@ import {AuthorizationActionCreator} from './authorization/action';
 import {CitiesActionCreator} from './cities/action';
 import {RoomActionCreator} from './room/action';
 import {DataActionCreator, getComments, setComments} from './data/action';
-import {AuthorizationStatus} from '../utils';
+import {AuthorizationStatus} from '../const';
 import {APIRoutes, APIRouteMethods, Routes} from '../routes';
 
 export const fetchHotelsList = () => (dispatch, _getState, api) => (

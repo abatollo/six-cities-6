@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {Routes} from '../../routes';
-import {AuthorizationStatus} from '../../utils';
+import {AuthorizationStatus} from '../../const';
 
 const Header = ({authorizationStatus}) => {
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;

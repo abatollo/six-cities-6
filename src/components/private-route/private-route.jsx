@@ -3,7 +3,7 @@ import {Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {AuthorizationStatus} from '../../utils';
+import {AuthorizationStatus} from '../../const';
 import {Routes} from '../../routes';
 
 
