@@ -139,7 +139,7 @@ const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoad
                 </div>
               </div>
               <section className="property__reviews reviews">
-              {!isCommentsLoading ? <ReviewsList comments={comments} /> : <LoadingScreen />}
+                {!isCommentsLoading ? <ReviewsList comments={comments} /> : <LoadingScreen />}
                 {isAuthorized ? <ReviewForm id={id} /> : ``}
               </section>
             </div>
@@ -168,8 +168,8 @@ const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoad
 };
 
 PropertyScreen.propTypes = {
-  // comments: PropTypes.arrayOf(PropsValidator.COMMENT),
-  currentOffer: PropsValidator.HOTEL.isRequired,
+  comments: PropTypes.arrayOf(PropsValidator.COMMENT),
+  // currentOffer: PropTypes.objectOf(PropsValidator.HOTEL),
   authorizationStatus: PropTypes.string.isRequired,
   isRoomLoaded: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,
@@ -182,7 +182,7 @@ const mapStateToProps = (state) => {
     isRoomLoaded: state.data.isRoomLoaded,
     authorizationStatus: state.authorization.authorizationStatus,
     isCommentsLoading: state.data.isCommentsLoading,
-    comments: state.room.comments,
+    comments: state.data.comments
   };
 };
 

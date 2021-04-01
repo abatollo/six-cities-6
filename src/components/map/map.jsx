@@ -69,7 +69,7 @@ Map.propTypes = {
     longitude: PropTypes.number.isRequired,
     zoom: PropTypes.number.isRequired,
   }),
-  points: PropsValidator.HOTELS,
+  points: PropTypes.arrayOf(PropsValidator.HOTEL),
   activeId: PropTypes.number
 };
 

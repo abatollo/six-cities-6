@@ -1,7 +1,9 @@
 export const DataActionTypes = {
   SET_HOTELS_LOADED: `SET_HOTELS_LOADED`,
   SET_ROOM_LOADED: `SET_ROOM_LOADED`,
-  SET_COMMENTS_LOADED: `SET_COMMENTS_LOADED`
+  SET_COMMENTS_LOADED: `SET_COMMENTS_LOADED`,
+  GET_COMMENTS: `GET_COMMENTS`,
+  SET_COMMENTS: `SET_COMMENTS`
 };
 
 export const DataActionCreator = {
@@ -20,10 +22,10 @@ export const DataActionCreator = {
 };
 
 export const getComments = () => ({
-  type: 'GET_COMMENTS'
+  type: DataActionTypes.GET_COMMENTS
 });
 
-export const setComments = payload => ({
-  type: 'SET_COMMENTS',
+export const setComments = (payload) => ({
+  type: DataActionTypes.SET_COMMENTS,
   payload
 });

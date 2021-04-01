@@ -24,17 +24,6 @@ export const fetchRoom = (id) => (dispatch, _getState, api) => (
     })
 );
 
-// export const fetchComments = (id) => (dispatch, _getState, api) => (
-//   api.get(APIRouteMethods.getHotelComments(id))
-//     .then(({data}) => {
-//       dispatch(RoomActionCreator.setCommentsRoom(data));
-//       dispatch(DataActionCreator.setCommentsLoaded(true));
-//     })
-//     .catch(() => {
-//       dispatch(DataActionCreator.setCommentsLoaded(true));
-//     })
-// );
-
 export const fetchComments = (id) => (dispatch, _getState, api) => {
   dispatch(getComments());
 
@@ -42,7 +31,7 @@ export const fetchComments = (id) => (dispatch, _getState, api) => {
     .then(({data}) => {
       dispatch(setComments(data));
     });
-}
+};
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoutes.LOGIN)

@@ -16,7 +16,7 @@ const PropsValidator = {
         PropTypes.string.isRequired
     ),
     host: PropTypes.shape({
-      avatarUrl: PropTypes.string,
+      avatar_url: PropTypes.string,
       id: PropTypes.number.isRequired,
       isPro: PropTypes.bool,
       name: PropTypes.string.isRequired
@@ -45,9 +45,9 @@ const PropsValidator = {
     id: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     user: PropTypes.shape({
-      avatarUrl: PropTypes.string.isRequired,
+      avatar_url: PropTypes.string.isRequired,
       id: PropTypes.number.isRequired,
-      isPro: PropTypes.bool.isRequired,
+      is_pro: PropTypes.bool.isRequired,
       name: PropTypes.string.isRequired
     }).isRequired
   }).isRequired

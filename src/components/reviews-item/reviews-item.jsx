@@ -4,7 +4,7 @@ import {PropsValidator} from '../../utils';
 
 const ReviewsItem = ({comment}) => {
   const {comment: commentBody, date, rating, user} = comment;
-  const {avatarUrl, name} = user;
+  const {avatar_url, name} = user;
 
   const formattedDate = new Date(date);
   const postMounthYear = formattedDate.toLocaleString(`en-US`, {year: `numeric`, month: `long`});
@@ -14,7 +14,7 @@ const ReviewsItem = ({comment}) => {
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={avatarUrl} width="54" height="54" alt="Reviews avatar" />
+          <img className="reviews__avatar user__avatar" src={avatar_url} width="54" height="54" alt="Reviews avatar" />
         </div>
         <span className="reviews__user-name">
           {name}
