@@ -59,6 +59,26 @@ const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoad
     );
   }
 
+  const {
+    images,
+    is_premium: isPremium,
+    title,
+    is_favorite: isFavorite,
+    rating,
+    type,
+    bedrooms,
+    max_adults: maxAdults,
+    price,
+    goods,
+    description
+  } = currentOffer;
+
+  const {
+    name: hostName,
+    is_pro: isHostPro,
+    avatar_url: hostAvatarURL
+  } = currentOffer.host;
+
   return (
     <div className="page">
       <Header />
@@ -66,24 +86,24 @@ const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoad
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {currentOffer.images.slice(0, 6).map((img, idx) =>
-                <div className="property__image-wrapper" key={idx}>
-                  <img className="property__image" src={img} alt="Photo studio" />
+              {images.slice(0, 6).map((image, index) =>
+                <div className="property__image-wrapper" key={index}>
+                  <img className="property__image" src={image} alt="Photo studio" />
                 </div>
               )}
             </div>
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {currentOffer.is_premium ?
+              {isPremium ?
                 <div className="property__mark">
                   <span>Premium</span>
-                </div> : null}
+                </div> : ``}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  {currentOffer.title}
+                  {title}
                 </h1>
-                <button className={`${currentOffer.is_favorite ? `property__bookmark-button--active` : ``} property__bookmark-button button`} type="button">
+                <button className={`${isFavorite ? `property__bookmark-button--active` : ``} property__bookmark-button button`} type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
@@ -92,32 +112,32 @@ const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoad
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <StarRating rating={currentOffer.rating} />
+                  <StarRating rating={rating} />
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">{currentOffer.rating}</span>
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {currentOffer.type ? currentOffer.type[0].toUpperCase() + currentOffer.type.slice(1) : null}
+                  {type[0].toUpperCase() + type.slice(1)}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {currentOffer.bedrooms} Bedrooms
+                  {bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {currentOffer.max_adults} adults
+                  Max {maxAdults} adults
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">&euro;{currentOffer.price}</b>
+                <b className="property__price-value">&euro;{price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {currentOffer.goods.map((goods, idx) =>
-                    <li className="property__inside-item" key={idx}>
-                      {goods}
+                  {goods.map((item, index) =>
+                    <li className="property__inside-item" key={index}>
+                      {item}
                     </li>
                   )}
                 </ul>
@@ -125,16 +145,16 @@ const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoad
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className={`${currentOffer.host.is_pro ? `property__avatar-wrapper--pro` : ``} property__avatar-wrapper user__avatar-wrapper`}>
-                    <img className="property__avatar user__avatar" src={currentOffer.host.avatar_url} width="74" height="74" alt="Host avatar" />
+                  <div className={`${isHostPro ? `property__avatar-wrapper--pro` : ``} property__avatar-wrapper user__avatar-wrapper`}>
+                    <img className="property__avatar user__avatar" src={hostAvatarURL} width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
-                    {currentOffer.host.name}
+                    {hostName}
                   </span>
                 </div>
                 <div className="property__description">
                   <p className="property__text">
-                    {currentOffer.description}
+                    {description}
                   </p>
                 </div>
               </div>
