@@ -75,7 +75,7 @@ Map.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    activeId: state.map.activeId
+    activeId: state.activeId
   };
 };
 

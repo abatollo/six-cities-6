@@ -8,7 +8,8 @@ import {PropsValidator} from '../../utils';
 
 const FavoritesList = ({hotels}) => {
   const citiesWithHotels = hotels.reduce((byCities, hotel) => {
-    if (hotel.isFavorite) {
+    const isFavorite = hotel.is_favorite;
+    if (isFavorite) {
       if (hotel.city.name in byCities) {
         byCities[hotel.city.name].push(hotel);
       } else {
@@ -37,7 +38,7 @@ FavoritesList.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    hotels: state.cities.hotels
+    hotels: state.hotels
   };
 };
 

@@ -18,7 +18,7 @@ import {AuthorizationStatus} from '../../const';
 import {createAPI} from '../../services/api';
 import {APIRouteMethods} from '../../routes';
 import {fetchRoom, fetchComments} from '../../store/api-actions.js';
-import {DataActionCreator} from '../../store/data/action';
+import {ActionCreator} from '../../store/action';
 
 const api = createAPI();
 const fetchNearbyList = (id) => {
@@ -198,11 +198,11 @@ PropertyScreen.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    currentOffer: state.room.currentsRoom,
-    isRoomLoaded: state.data.isRoomLoaded,
-    authorizationStatus: state.authorization.authorizationStatus,
-    isCommentsLoading: state.data.isCommentsLoading,
-    comments: state.data.comments
+    currentOffer: state.currentRoom,
+    isRoomLoaded: state.isRoomLoaded,
+    authorizationStatus: state.authorizationStatus,
+    isCommentsLoading: state.isCommentsLoading,
+    comments: state.comments
   };
 };
 
@@ -212,7 +212,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchComments(id));
   },
   setRoomLoaded(value) {
-    dispatch(DataActionCreator.setRoomLoaded(value));
+    dispatch(ActionCreator.setRoomLoaded(value));
   }
 });
 

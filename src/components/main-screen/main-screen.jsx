@@ -48,8 +48,8 @@ MainScreen.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    hotels: sortOffers(state.sort.currentSort, filterOffersByCity(state.cities.currentCity, state.cities.hotels)),
-    currentCity: state.cities.currentCity
+    hotels: sortOffers(state.currentSort, filterOffersByCity(state.currentCity, state.hotels)),
+    currentCity: state.currentCity
   };
 };
 

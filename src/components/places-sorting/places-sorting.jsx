@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {SortActionCreator} from '../../store/sort/action';
+import {ActionCreator} from '../../store/action';
 import {SORT_LIST} from '../../const';
 
 const Sort = ({changeSort, currentSort}) => {
@@ -52,12 +52,12 @@ Sort.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   changeSort(currentSort) {
-    dispatch(SortActionCreator.changeSort(currentSort));
+    dispatch(ActionCreator.changeSort(currentSort));
   }
 });
 
 const mapStateToProps = (state) => ({
-  currentSort: state.sort.currentSort
+  currentSort: state.currentSort
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sort);

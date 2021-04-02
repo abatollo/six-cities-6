@@ -59,7 +59,7 @@ const App = ({isDataLoaded, onLoadData}) => {
 };
 
 const mapStateToProps = (state) => ({
-  isDataLoaded: state.cities.isDataLoaded,
+  isDataLoaded: state.isDataLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({

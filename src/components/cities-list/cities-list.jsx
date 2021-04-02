@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import PropTypes from 'prop-types';
-import {CitiesActionCreator} from '../../store/cities/action';
+import {ActionCreator} from '../../store/action';
 
 import {CITIES} from '../../const.js';
 
@@ -34,13 +34,13 @@ CitiesList.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    currentCity: state.cities.currentCity
+    currentCity: state.currentCity
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentCity(value) {
-    dispatch(CitiesActionCreator.setCurrentCity(value));
+    dispatch(ActionCreator.setCurrentCity(value));
   },
 });
 
