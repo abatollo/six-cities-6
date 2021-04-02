@@ -15,15 +15,15 @@ import PrivateRoute from '../private-route/private-route';
 import {Routes} from '../../routes';
 import {fetchHotelsList} from '../../store/api-actions';
 
-const App = ({isDataLoaded, onLoadData}) => {
+const App = ({isHotelsLoaded, onLoadData}) => {
 
   useEffect(() => {
-    if (!isDataLoaded) {
+    if (!isHotelsLoaded) {
       onLoadData();
     }
-  }, [isDataLoaded]);
+  }, [isHotelsLoaded]);
 
-  if (!isDataLoaded) {
+  if (!isHotelsLoaded) {
     return (
       <LoadingScreen />
     );
@@ -59,7 +59,7 @@ const App = ({isDataLoaded, onLoadData}) => {
 };
 
 const mapStateToProps = (state) => ({
-  isDataLoaded: state.isDataLoaded,
+  isHotelsLoaded: state.isHotelsLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -69,7 +69,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 App.propTypes = {
-  isDataLoaded: PropTypes.bool.isRequired,
+  isHotelsLoaded: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,
 };
 

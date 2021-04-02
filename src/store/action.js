@@ -4,12 +4,12 @@ const ActionType = {
   SET_CITIES_LIST: `SET_CITIES_LIST`,
   SET_CURRENT_CITY: `SET_CURRENT_CITY`,
   SET_HOTELS_LOADED: `SET_HOTELS_LOADED`,
-  SET_ROOM_LOADED: `SET_ROOM_LOADED`,
+  SET_HOTEL_LOADED: `SET_HOTEL_LOADED`,
   GET_COMMENTS: `GET_COMMENTS`,
   SET_COMMENTS: `SET_COMMENTS`,
   SET_COMMENTS_LOADED: `SET_COMMENTS_LOADED`,
   SET_ACTIVE_POINT: `SET_ACTIVE_POINT`,
-  SET_CURRENT_ROOM: `SET_CURRENT_ROOM`,
+  SET_CURRENT_HOTEL: `SET_CURRENT_HOTEL`,
   SET_SORT: `SET_SORT`
 };
 
@@ -30,28 +30,24 @@ const ActionCreator = {
     type: ActionType.SET_CURRENT_CITY,
     payload
   }),
-  setHotelsLoaded: (isLoad) => ({
+  setHotelsLoaded: (isLoading) => ({
     type: ActionType.SET_HOTELS_LOADED,
-    payload: isLoad,
+    payload: isLoading,
   }),
-  setRoomLoaded: (isLoad) => ({
-    type: ActionType.SET_ROOM_LOADED,
-    payload: isLoad,
+  setHotelLoaded: (isLoading) => ({
+    type: ActionType.SET_HOTEL_LOADED,
+    payload: isLoading,
   }),
-  setCommentsLoaded: (isLoad) => ({
+  setCommentsLoaded: (isLoading) => ({
     type: ActionType.SET_COMMENTS_LOADED,
-    payload: isLoad,
+    payload: isLoading,
   }),
   setActiveId: (payload) => ({
     type: ActionType.SET_ACTIVE_POINT,
     payload,
   }),
-  setCurrentRoom: (payload) => ({
-    type: ActionType.SET_CURRENT_ROOM,
-    payload,
-  }),
-  setCommentsRoom: (payload) => ({
-    type: ActionType.SET_COMMENTS_ROOM,
+  setCurrentHotel: (payload) => ({
+    type: ActionType.SET_CURRENT_HOTEL,
     payload,
   }),
   changeSort: (payload) => ({

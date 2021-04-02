@@ -25,7 +25,7 @@ const fetchNearbyList = (id) => {
   return api.get(APIRouteMethods.getHotelNearby(id));
 };
 
-const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoadData, setRoomLoaded, isCommentsLoading, comments}) => {
+const PropertyScreen = ({currentHotel, authorizationStatus, isRoomLoaded, onLoadData, setHotelLoaded, isCommentsLoading, comments}) => {
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
   const id = +useParams().id;
 
@@ -35,10 +35,10 @@ const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoad
     fetchNearbyList(id).then((data) => {
       setNearby(data.data);
     });
-  }, [currentOffer]);
+  }, [currentHotel]);
 
   useEffect(() => {
-    setRoomLoaded(false);
+    setHotelLoaded(false);
   }, [id]);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoad
     );
   }
 
-  if (!currentOffer) {
+  if (!currentHotel) {
     return (
       <NotFoundScreen />
     );
@@ -71,13 +71,13 @@ const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoad
     price,
     goods,
     description
-  } = currentOffer;
+  } = currentHotel;
 
   const {
     name: hostName,
     is_pro: isHostPro,
     avatar_url: hostAvatarURL
-  } = currentOffer.host;
+  } = currentHotel.host;
 
   return (
     <div className="page">
@@ -189,16 +189,16 @@ const PropertyScreen = ({currentOffer, authorizationStatus, isRoomLoaded, onLoad
 
 PropertyScreen.propTypes = {
   comments: PropTypes.arrayOf(PropsValidator.COMMENT),
-  // currentOffer: PropTypes.objectOf(PropsValidator.HOTEL),
+  // currentHotel: PropTypes.objectOf(PropsValidator.HOTEL),
   authorizationStatus: PropTypes.string.isRequired,
   isRoomLoaded: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,
-  setRoomLoaded: PropTypes.func.isRequired
+  setHotelLoaded: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    currentOffer: state.currentRoom,
+    currentHotel: state.currentHotel,
     isRoomLoaded: state.isRoomLoaded,
     authorizationStatus: state.authorizationStatus,
     isCommentsLoading: state.isCommentsLoading,
@@ -211,8 +211,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchRoom(id));
     dispatch(fetchComments(id));
   },
-  setRoomLoaded(value) {
-    dispatch(ActionCreator.setRoomLoaded(value));
+  setHotelLoaded(value) {
+    dispatch(ActionCreator.setHotelLoaded(value));
   }
 });
 

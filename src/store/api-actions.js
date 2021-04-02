@@ -13,11 +13,11 @@ export const fetchHotelsList = () => (dispatch, _getState, api) => (
 export const fetchRoom = (id) => (dispatch, _getState, api) => (
   api.get(APIRouteMethods.getHotel(id))
     .then(({data}) => {
-      dispatch(ActionCreator.setCurrentRoom(data));
-      dispatch(ActionCreator.setRoomLoaded(true));
+      dispatch(ActionCreator.setCurrentHotel(data));
+      dispatch(ActionCreator.setHotelLoaded(true));
     })
     .catch(() => {
-      dispatch(ActionCreator.setRoomLoaded(true));
+      dispatch(ActionCreator.setHotelLoaded(true));
     })
 );
 

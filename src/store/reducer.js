@@ -5,13 +5,12 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   currentCity: `Paris`,
   hotels: [],
-  isDataLoaded: false,
   isHotelsLoaded: false,
   isRoomLoaded: false,
   comments: [],
   isCommentsLoaded: false,
   activeId: null,
-  currentRoom: null,
+  currentHotel: null,
   currentSort: SORT_TYPES.POPULAR
 };
 
@@ -27,7 +26,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         hotels: action.payload,
-        isDataLoaded: true
+        isHotelsLoaded: true
       };
     case ActionType.SET_CURRENT_CITY:
       return {
@@ -35,7 +34,7 @@ const reducer = (state = initialState, action) => {
         currentCity: action.payload
       };
 
-    case ActionType.SET_ROOM_LOADED:
+    case ActionType.SET_HOTEL_LOADED:
       return {
         ...state,
         isRoomLoaded: action.payload
@@ -58,10 +57,10 @@ const reducer = (state = initialState, action) => {
         activeId: action.payload
       };
 
-    case ActionType.SET_CURRENT_ROOM:
+    case ActionType.SET_CURRENT_HOTEL:
       return {
         ...state,
-        currentRoom: action.payload
+        currentHotel: action.payload
       };
 
     case ActionType.SET_SORT:
