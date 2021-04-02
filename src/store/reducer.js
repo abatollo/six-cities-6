@@ -12,7 +12,6 @@ const initialState = {
   isCommentsLoaded: false,
   activeId: null,
   currentRoom: null,
-  commentsRoom: [],
   currentSort: SORT_TYPES.POPULAR
 };
 
@@ -23,7 +22,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         authorizationStatus: action.payload,
       };
-      
+
     case ActionType.SET_CITIES_LIST:
       return {
         ...state,
@@ -35,7 +34,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         currentCity: action.payload
       };
-    
+
     case ActionType.SET_ROOM_LOADED:
       return {
         ...state,
@@ -52,22 +51,17 @@ const reducer = (state = initialState, action) => {
         comments: action.payload,
         isCommentsLoading: false,
       };
-      
+
     case ActionType.SET_ACTIVE_POINT:
       return {
         ...state,
         activeId: action.payload
       };
-      
+
     case ActionType.SET_CURRENT_ROOM:
       return {
         ...state,
         currentRoom: action.payload
-      };
-    case ActionType.SET_COMMENTS_ROOM:
-      return {
-        ...state,
-        commentsRoom: action.payload
       };
 
     case ActionType.SET_SORT:
