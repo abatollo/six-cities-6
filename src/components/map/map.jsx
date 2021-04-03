@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
-import {PropsValidator} from '../../utils';
+import {PropsValidator} from '../../utils/props-validator';
 
 import 'leaflet/dist/leaflet.css';
 

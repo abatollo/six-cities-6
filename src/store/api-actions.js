@@ -1,19 +1,24 @@
 import {ActionCreator} from './action';
 import {AuthorizationStatus} from '../const';
 import {APIRoutes, APIRouteMethods, Routes} from '../routes';
+import {adaptHotelsToClient, adaptHotelToClient, adaptCommentsToClient} from '../utils/adapter';
 
 export const fetchHotelsList = () => (dispatch, _getState, api) => (
+  // dispatch(ActionCreator.setHotelsLoading(true));
   api.get(APIRoutes.HOTELS)
     .then(({data}) => {
-      dispatch(ActionCreator.setCitiesList(data));
+      dispatch(ActionCreator.setCitiesList(adaptHotelsToClient(data)));
       dispatch(ActionCreator.setHotelsLoaded(true));
+      // dispatch(ActionCreator.setHotelsLoading(false));
+    }).catch(() => {
+      // dispatch(ActionCreator.setHotelsLoading(false));
     })
 );
 
-export const fetchRoom = (id) => (dispatch, _getState, api) => (
+export const fetchHotel = (id) => (dispatch, _getState, api) => (
   api.get(APIRouteMethods.getHotel(id))
     .then(({data}) => {
-      dispatch(ActionCreator.setCurrentHotel(data));
+      dispatch(ActionCreator.setCurrentHotel(adaptHotelToClient(data)));
       dispatch(ActionCreator.setHotelLoaded(true));
     })
     .catch(() => {
@@ -26,7 +31,7 @@ export const fetchComments = (id) => (dispatch, _getState, api) => {
 
   api.get(APIRouteMethods.getHotelComments(id))
     .then(({data}) => {
-      dispatch(ActionCreator.setComments(data));
+      dispatch(ActionCreator.setComments(adaptCommentsToClient(data)));
     });
 };
 

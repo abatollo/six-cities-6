@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import FavoriteCityList from '../favorite-city-list/favorite-city-list';
 
-import {PropsValidator} from '../../utils';
+import {PropsValidator} from '../../utils/props-validator';
 
 const FavoritesList = ({hotels}) => {
   const citiesWithHotels = hotels.reduce((byCities, hotel) => {

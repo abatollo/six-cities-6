@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {PropsValidator} from '../../utils';
+import {PropsValidator} from '../../utils/props-validator';
 import FavoriteCard from '../favorite-card/favorite-card';
 
 const FavoriteCityList = ({city, hotels}) => {

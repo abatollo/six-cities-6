@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import {SORT_TYPES} from './const';
 
 const PropsValidator = {
   HOTEL: PropTypes.shape({
@@ -17,7 +16,7 @@ const PropsValidator = {
         PropTypes.string.isRequired
     ),
     host: PropTypes.shape({
-      avatar_url: PropTypes.string,
+      avatarURL: PropTypes.string,
       id: PropTypes.number.isRequired,
       isPro: PropTypes.bool,
       name: PropTypes.string.isRequired
@@ -46,27 +45,12 @@ const PropsValidator = {
     id: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     user: PropTypes.shape({
-      avatar_url: PropTypes.string.isRequired,
+      avatarURL: PropTypes.string.isRequired,
       id: PropTypes.number.isRequired,
-      is_pro: PropTypes.bool.isRequired,
+      isPro: PropTypes.bool.isRequired,
       name: PropTypes.string.isRequired
     }).isRequired
   }).isRequired
 };
 
-const filterOffersByCity = (city, offers) => offers.filter((offer) => offer.city.name === city);
-
-const sortOffers = (currentSort, offers) => {
-  switch (currentSort) {
-    case SORT_TYPES.LOW_PRICE:
-      return offers.sort((a, b) => a.price - b.price);
-    case SORT_TYPES.HIGH_PRICE:
-      return offers.sort((a, b) => b.price - a.price);
-    case SORT_TYPES.TOP_RATED:
-      return offers.sort((a, b) => b.rating - a.rating);
-    default:
-      return offers;
-  }
-};
-
-export {PropsValidator, filterOffersByCity, sortOffers};
+export {PropsValidator};

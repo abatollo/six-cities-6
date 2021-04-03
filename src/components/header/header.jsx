@@ -4,11 +4,9 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {Routes} from '../../routes';
-import {AuthorizationStatus} from '../../const';
+import {checkAuthorizationStatus} from '../../utils/check-authorization-status';
 
-const Header = ({authorizationStatus}) => {
-  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
-
+const Header = ({isAuthorized}) => {
   return (
     <header className="header">
       <div className="container">
@@ -38,12 +36,12 @@ const Header = ({authorizationStatus}) => {
 };
 
 Header.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired
+  isAuthorized: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    authorizationStatus: state.authorizationStatus
+    isAuthorized: checkAuthorizationStatus(state.authorizationStatus)
   };
 };
 

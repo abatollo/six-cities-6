@@ -18,10 +18,8 @@ import {fetchHotelsList} from '../../store/api-actions';
 const App = ({isHotelsLoaded, onLoadData}) => {
 
   useEffect(() => {
-    if (!isHotelsLoaded) {
-      onLoadData();
-    }
-  }, [isHotelsLoaded]);
+    onLoadData();
+  }, []);
 
   if (!isHotelsLoaded) {
     return (

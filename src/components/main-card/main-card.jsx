@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {PropsValidator} from '../../utils';
+import {PropsValidator} from '../../utils/props-validator';
 
 import CardFragment from '../card-fragment/card-fragment';
 
@@ -10,7 +10,7 @@ const MainCard = (props) => {
   const hotel = props.hotel;
   const onMouseOver = props.onMouseOver;
 
-  const {isPremium, preview_image: previewImage, id} = hotel;
+  const {isPremium, previewImage, id} = hotel;
 
   const handleMouseOver = () => {
     onMouseOver(id);

@@ -2,7 +2,7 @@ import React from 'react';
 
 import CardFragment from '../card-fragment/card-fragment';
 
-import {PropsValidator} from '../../utils';
+import {PropsValidator} from '../../utils/props-validator';
 
 const NearCard = ({hotel}) => {
   return (

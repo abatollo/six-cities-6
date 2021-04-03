@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ReviewsItem from '../reviews-item/reviews-item';
 
-import {PropsValidator} from '../../utils';
+import {PropsValidator} from '../../utils/props-validator';
 
 const ReviewsList = ({comments}) => {
   return (

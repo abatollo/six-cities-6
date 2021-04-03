@@ -58,7 +58,7 @@ const SORT_LIST = [
 ];
 
 const FavoriteStatus = {
-  ON: 0.1,
+  ON: 1,
   OFF: 0,
 };
 

@@ -13,20 +13,19 @@ import StarRating from '../star-rating/star-rating';
 import LoadingScreen from '../loading-screen/loading-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 
-import {PropsValidator} from '../../utils';
-import {AuthorizationStatus} from '../../const';
+import {PropsValidator} from '../../utils/props-validator';
 import {createAPI} from '../../services/api';
 import {APIRouteMethods} from '../../routes';
-import {fetchRoom, fetchComments} from '../../store/api-actions.js';
+import {fetchHotel, fetchComments} from '../../store/api-actions';
 import {ActionCreator} from '../../store/action';
+import {checkAuthorizationStatus} from '../../utils/check-authorization-status';
 
 const api = createAPI();
 const fetchNearbyList = (id) => {
   return api.get(APIRouteMethods.getHotelNearby(id));
 };
 
-const PropertyScreen = ({currentHotel, authorizationStatus, isRoomLoaded, onLoadData, setHotelLoaded, isCommentsLoading, comments}) => {
-  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
+const PropertyScreen = ({currentHotel, isAuthorized, isRoomLoaded, onLoadData, setHotelLoaded, isCommentsLoading, comments}) => {
   const id = +useParams().id;
 
   const [nearby, setNearby] = useState();
@@ -61,13 +60,13 @@ const PropertyScreen = ({currentHotel, authorizationStatus, isRoomLoaded, onLoad
 
   const {
     images,
-    is_premium: isPremium,
+    isPremium,
     title,
-    is_favorite: isFavorite,
+    isFavorite,
     rating,
     type,
     bedrooms,
-    max_adults: maxAdults,
+    maxAdults,
     price,
     goods,
     description
@@ -75,8 +74,8 @@ const PropertyScreen = ({currentHotel, authorizationStatus, isRoomLoaded, onLoad
 
   const {
     name: hostName,
-    is_pro: isHostPro,
-    avatar_url: hostAvatarURL
+    isPro: isHostPro,
+    avatarURL: hostAvatarURL
   } = currentHotel.host;
 
   return (
@@ -189,18 +188,19 @@ const PropertyScreen = ({currentHotel, authorizationStatus, isRoomLoaded, onLoad
 
 PropertyScreen.propTypes = {
   comments: PropTypes.arrayOf(PropsValidator.COMMENT),
-  // currentHotel: PropTypes.objectOf(PropsValidator.HOTEL),
-  authorizationStatus: PropTypes.string.isRequired,
+  currentHotel: PropTypes.objectOf(PropsValidator.HOTEL),
+  isAuthorized: PropTypes.bool.isRequired,
   isRoomLoaded: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired,
-  setHotelLoaded: PropTypes.func.isRequired
+  setHotelLoaded: PropTypes.func.isRequired,
+  isCommentsLoading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
     currentHotel: state.currentHotel,
     isRoomLoaded: state.isRoomLoaded,
-    authorizationStatus: state.authorizationStatus,
+    isAuthorized: checkAuthorizationStatus(state.authorizationStatus),
     isCommentsLoading: state.isCommentsLoading,
     comments: state.comments
   };
@@ -208,7 +208,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadData(id) {
-    dispatch(fetchRoom(id));
+    dispatch(fetchHotel(id));
     dispatch(fetchComments(id));
   },
   setHotelLoaded(value) {

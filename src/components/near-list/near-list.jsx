@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import NearCard from '../near-card/near-card';
 
-import {PropsValidator} from '../../utils';
+import {PropsValidator} from '../../utils/props-validator';
 
 const NearList = ({hotels}) => {
   return (

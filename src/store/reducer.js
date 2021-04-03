@@ -11,7 +11,7 @@ const initialState = {
   isCommentsLoaded: false,
   activeId: null,
   currentHotel: null,
-  currentSort: SORT_TYPES.POPULAR
+  currentSort: SORT_TYPES.POPULAR,
 };
 
 const reducer = (state = initialState, action) => {

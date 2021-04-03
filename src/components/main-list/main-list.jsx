@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 
 import MainCard from '../main-card/main-card';
 
-import {PropsValidator, sortOffers, filterOffersByCity} from '../../utils';
+import {filterOffersByCity} from '../../utils/filter-offers-by-city';
+import {sortOffers} from '../../utils/sort-offers';
+import {PropsValidator} from '../../utils/props-validator';
 import PlacesSorting from '../places-sorting/places-sorting';
 
 const MainList = ({hotels, currentCity}) => {

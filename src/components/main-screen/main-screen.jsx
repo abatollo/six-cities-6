@@ -9,7 +9,9 @@ import CitiesList from '../cities-list/cities-list';
 import MainListEmpty from '../main-list-empty/main-list-empty';
 import MainMap from '../map-main/map-main';
 
-import {PropsValidator, sortOffers, filterOffersByCity} from '../../utils';
+import {filterOffersByCity} from '../../utils/filter-offers-by-city';
+import {sortOffers} from '../../utils/sort-offers';
+import {PropsValidator} from '../../utils/props-validator';
 
 const MainScreen = ({hotels}) => {
   return (

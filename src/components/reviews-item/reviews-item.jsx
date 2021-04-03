@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {PropsValidator} from '../../utils';
+import {PropsValidator} from '../../utils/props-validator';
 
 const ReviewsItem = ({comment}) => {
   const {comment: commentBody, date, rating, user} = comment;
-  const {avatar_url: avatarURL, name} = user;
+  const {avatarURL, name} = user;
 
   const formattedDate = new Date(date);
   const postMounthYear = formattedDate.toLocaleString(`en-US`, {year: `numeric`, month: `long`});
