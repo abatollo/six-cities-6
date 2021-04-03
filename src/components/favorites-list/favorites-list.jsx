@@ -5,24 +5,12 @@ import PropTypes from 'prop-types';
 import FavoriteCityList from '../favorite-city-list/favorite-city-list';
 
 import {PropsValidator} from '../../utils/props-validator';
+import {sortHotelsByCities} from '../../utils/sort-hotels-by-cities';
 
 const FavoritesList = ({hotels}) => {
-  const citiesWithHotels = hotels.reduce((byCities, hotel) => {
-    const isFavorite = hotel.is_favorite;
-    if (isFavorite) {
-      if (hotel.city.name in byCities) {
-        byCities[hotel.city.name].push(hotel);
-      } else {
-        byCities[hotel.city.name] = [hotel];
-      }
-    }
-
-    return byCities;
-  }, {});
-
   return (
     <ul className="favorites__list">
-      {Object.entries(citiesWithHotels).map(([city, cityHotels]) => <FavoriteCityList
+      {Object.entries(sortHotelsByCities(hotels)).map(([city, cityHotels]) => <FavoriteCityList
         key={city}
         city={city}
         hotels={cityHotels}
