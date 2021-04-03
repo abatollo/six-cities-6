@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         isRoomLoaded: action.payload
       };
-    case ActionType.GET_COMMENTS:
+    case ActionType.LOAD_COMMENTS:
       return {
         ...state,
         isCommentsLoading: true,

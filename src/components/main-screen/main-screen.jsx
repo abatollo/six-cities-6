@@ -9,11 +9,11 @@ import CitiesList from '../cities-list/cities-list';
 import MainListEmpty from '../main-list-empty/main-list-empty';
 import MainMap from '../map-main/map-main';
 
-import {filterOffersByCity} from '../../utils/filter-offers-by-city';
-import {sortOffers} from '../../utils/sort-offers';
+import {filterHotelsByCity} from '../../utils/filter-hotels-by-city';
+import {sortHotels} from '../../utils/sort-hotels';
 import {PropsValidator} from '../../utils/props-validator';
 
-const MainScreen = ({hotels}) => {
+const MainScreen = ({sortedFilteredHotels}) => {
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -25,13 +25,13 @@ const MainScreen = ({hotels}) => {
         <div className="cities">
           <div className="cities__places-container container">
             {
-              hotels.length ?
-                <MainList hotels={hotels} /> :
+              sortedFilteredHotels.length ?
+                <MainList /> :
                 <MainListEmpty />
             }
             <div className="cities__right-section">
               <Map
-                points={hotels}
+                points={sortedFilteredHotels}
                 render={(ref) => {
                   return (<MainMap mapRef={ref} />);
                 }}
@@ -45,12 +45,13 @@ const MainScreen = ({hotels}) => {
 };
 
 MainScreen.propTypes = {
-  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
+  sortedFilteredHotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired,
+  currentCity: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    hotels: sortOffers(state.currentSort, filterOffersByCity(state.currentCity, state.hotels)),
+    sortedFilteredHotels: sortHotels(state.currentSort, filterHotelsByCity(state.currentCity, state.hotels)),
     currentCity: state.currentCity
   };
 };

@@ -5,7 +5,7 @@ const ActionType = {
   SET_CURRENT_CITY: `SET_CURRENT_CITY`,
   SET_HOTELS_LOADED: `SET_HOTELS_LOADED`,
   SET_HOTEL_LOADED: `SET_HOTEL_LOADED`,
-  GET_COMMENTS: `GET_COMMENTS`, // LOAD
+  LOAD_COMMENTS: `LOAD_COMMENTS`, // LOAD
   SET_COMMENTS: `SET_COMMENTS`,
   SET_COMMENTS_LOADED: `SET_COMMENTS_LOADED`,
   SET_ACTIVE_POINT: `SET_ACTIVE_POINT`,
@@ -55,7 +55,7 @@ const ActionCreator = {
     payload,
   }),
   getComments: () => ({
-    type: ActionType.GET_COMMENTS
+    type: ActionType.LOAD_COMMENTS
   }),
   setComments: (payload) => ({
     type: ActionType.SET_COMMENTS,
