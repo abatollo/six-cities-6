@@ -1,16 +1,30 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import FavoriteCityList from '../favorite-city-list/favorite-city-list';
+import LoadingScreen from '../loading-screen/loading-screen';
 
+import {fetchFavoriteHotels} from '../../store/api-actions';
 import {PropsValidator} from '../../utils/props-validator';
 import {sortHotelsByCities} from '../../utils/sort-hotels-by-cities';
 
-const FavoritesList = ({hotels}) => {
+const FavoritesList = ({favoriteHotels, isFavoriteHotelsLoading, onLoadData}) => {
+  useEffect(() => {
+    if (!isFavoriteHotelsLoading) {
+      onLoadData();
+    }
+  }, []);
+
+  if (isFavoriteHotelsLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <ul className="favorites__list">
-      {Object.entries(sortHotelsByCities(hotels)).map(([city, cityHotels]) => <FavoriteCityList
+      {Object.entries(sortHotelsByCities(favoriteHotels)).map(([city, cityHotels]) => <FavoriteCityList
         key={city}
         city={city}
         hotels={cityHotels}
@@ -21,13 +35,22 @@ const FavoritesList = ({hotels}) => {
 };
 
 FavoritesList.propTypes = {
-  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
+  favoriteHotels: PropTypes.arrayOf(PropsValidator.HOTEL),
+  isFavoriteHotelsLoading: PropTypes.bool.isRequired,
+  onLoadData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    hotels: state.hotels
+    favoriteHotels: state.favoriteHotels,
+    isFavoriteHotelsLoading: state.isFavoriteHotelsLoading
   };
 };
 
-export default connect(mapStateToProps, null)(FavoritesList);
+const mapDispatchToProps = (dispatch) => ({
+  onLoadData() {
+    dispatch(fetchFavoriteHotels());
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavoritesList);

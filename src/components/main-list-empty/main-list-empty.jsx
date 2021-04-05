@@ -23,7 +23,7 @@ PlacesEmpty.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    city: state.cities.currentCity
+    city: state.currentCity
   };
 };
 

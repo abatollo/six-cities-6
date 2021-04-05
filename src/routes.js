@@ -11,15 +11,16 @@ const APIRoutes = {
   HOTELS: `/hotels`,
   LOGIN: `/login`,
   LOGOUT: `/logout`,
-  COMMENTS: `/comments`
+  COMMENTS: `/comments`,
+  FAVORITE: `/favorite`,
 };
 
 const APIRouteMethods = {
-  getHotel: (id) => `${APIRoutes.HOTELS}/${id}`,
-  getHotelNearby: (id) => `${APIRoutes.HOTELS}/${id}/nearby`,
-  getHotelComments: (id) => `${APIRoutes.COMMENTS}/${id}`,
-  setHotelComment: (id) => `${APIRoutes.COMMENTS}/${id}`,
-  setFavoritesStatus: (id, isFavorite = FavoriteStatus.ON) => `${APIRoutes.FAVORITES}/${id}/${isFavorite}`
+  fetchHotel: (id) => `${APIRoutes.HOTELS}/${id}`,
+  fetchHotelsNearby: (id) => `${APIRoutes.HOTELS}/${id}/nearby`,
+  fetchHotelComments: (id) => `${APIRoutes.COMMENTS}/${id}`,
+  sendHotelComment: (id) => `${APIRoutes.COMMENTS}/${id}`,
+  setFavorite: (id, isFavorite = FavoriteStatus.ON) => `${APIRoutes.FAVORITE}/${id}/${isFavorite}`
 };
 
 export {Routes, APIRoutes, APIRouteMethods};

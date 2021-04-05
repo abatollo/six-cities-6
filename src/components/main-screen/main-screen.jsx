@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -8,12 +8,24 @@ import Map from '../map/map';
 import CitiesList from '../cities-list/cities-list';
 import MainListEmpty from '../main-list-empty/main-list-empty';
 import MainMap from '../map-main/map-main';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 import {filterHotelsByCity} from '../../utils/filter-hotels-by-city';
 import {sortHotels} from '../../utils/sort-hotels';
 import {PropsValidator} from '../../utils/props-validator';
+import {fetchHotels} from '../../store/api-actions';
 
-const MainScreen = ({sortedFilteredHotels}) => {
+const MainScreen = ({sortedFilteredHotels, isHotelsLoading, onLoadData}) => {
+  useEffect(() => {
+    onLoadData();
+  }, []);
+
+  if (isHotelsLoading || !sortedFilteredHotels.length) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -26,7 +38,7 @@ const MainScreen = ({sortedFilteredHotels}) => {
           <div className="cities__places-container container">
             {
               sortedFilteredHotels.length ?
-                <MainList /> :
+                <MainList sortedFilteredHotels={sortedFilteredHotels} /> :
                 <MainListEmpty />
             }
             <div className="cities__right-section">
@@ -46,14 +58,21 @@ const MainScreen = ({sortedFilteredHotels}) => {
 
 MainScreen.propTypes = {
   sortedFilteredHotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired,
-  currentCity: PropTypes.string.isRequired
+  isHotelsLoading: PropTypes.bool.isRequired,
+  onLoadData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
     sortedFilteredHotels: sortHotels(state.currentSort, filterHotelsByCity(state.currentCity, state.hotels)),
-    currentCity: state.currentCity
+    isHotelsLoading: state.isHotelsLoading
   };
 };
 
-export default connect(mapStateToProps, null)(MainScreen);
+const mapDispatchToProps = (dispatch) => ({
+  onLoadData() {
+    dispatch(fetchHotels());
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -12,47 +12,26 @@ import NearList from '../near-list/near-list';
 import StarRating from '../star-rating/star-rating';
 import LoadingScreen from '../loading-screen/loading-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
+import BookmarkButton from '../bookmark-button/bookmark-button';
 
 import {PropsValidator} from '../../utils/props-validator';
-import {createAPI} from '../../services/api';
-import {APIRouteMethods} from '../../routes';
-import {fetchHotel, fetchComments} from '../../store/api-actions';
-import {ActionCreator} from '../../store/action';
+import {fetchHotel, fetchComments, fetchNearbyHotels} from '../../store/api-actions';
 import {checkAuthorizationStatus} from '../../utils/check-authorization-status';
 
-const api = createAPI();
-const fetchNearbyList = (id) => {
-  return api.get(APIRouteMethods.getHotelNearby(id));
-};
-
-const PropertyScreen = ({currentHotel, isAuthorized, isRoomLoaded, onLoadData, setHotelLoaded, isCommentsLoading, comments}) => {
-  const id = +useParams().id;
-
-  const [nearby, setNearby] = useState();
+const PropertyScreen = ({hotel, isHotelLoading, isAuthorized, comments, isCommentsLoading, nearbyHotels, isNearbyHotelsLoading, onLoadData}) => {
+  const id = Number(useParams().id);
 
   useEffect(() => {
-    fetchNearbyList(id).then((data) => {
-      setNearby(data.data);
-    });
-  }, [currentHotel]);
-
-  useEffect(() => {
-    setHotelLoaded(false);
+    onLoadData(id);
   }, [id]);
 
-  useEffect(() => {
-    if (!isRoomLoaded) {
-      onLoadData(id);
-    }
-  }, [isRoomLoaded]);
-
-  if (!isRoomLoaded) {
+  if (isHotelLoading) {
     return (
       <LoadingScreen />
     );
   }
 
-  if (!currentHotel) {
+  if (!hotel) {
     return (
       <NotFoundScreen />
     );
@@ -62,21 +41,19 @@ const PropertyScreen = ({currentHotel, isAuthorized, isRoomLoaded, onLoadData, s
     images,
     isPremium,
     title,
-    isFavorite,
     rating,
     type,
     bedrooms,
     maxAdults,
     price,
     goods,
-    description
-  } = currentHotel;
-
-  const {
-    name: hostName,
-    isPro: isHostPro,
-    avatarURL: hostAvatarURL
-  } = currentHotel.host;
+    description,
+    host: {
+      name: hostName,
+      isPro: isHostPro,
+      avatarURL: hostAvatarURL
+    }
+  } = hotel;
 
   return (
     <div className="page">
@@ -102,12 +79,7 @@ const PropertyScreen = ({currentHotel, isAuthorized, isRoomLoaded, onLoadData, s
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className={`${isFavorite ? `property__bookmark-button--active` : ``} property__bookmark-button button`} type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <BookmarkButton />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
@@ -164,9 +136,9 @@ const PropertyScreen = ({currentHotel, isAuthorized, isRoomLoaded, onLoadData, s
             </div>
           </div>
           <section className="property__map map">
-            {nearby ? <Map
-              city={nearby[0].city.location}
-              points={nearby}
+            {!isNearbyHotelsLoading ? <Map
+              city={nearbyHotels[0].city.location}
+              points={nearbyHotels}
               render={(ref) => {
                 return (<MapNearby mapRef={ref} />);
               }}
@@ -177,7 +149,7 @@ const PropertyScreen = ({currentHotel, isAuthorized, isRoomLoaded, onLoadData, s
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {nearby ? <NearList hotels={nearby.slice(0, 3)} /> : ``}
+              {!isNearbyHotelsLoading ? <NearList hotels={nearbyHotels.slice(0, 3)} /> : ``}
             </div>
           </section>
         </div>
@@ -187,22 +159,25 @@ const PropertyScreen = ({currentHotel, isAuthorized, isRoomLoaded, onLoadData, s
 };
 
 PropertyScreen.propTypes = {
-  comments: PropTypes.arrayOf(PropsValidator.COMMENT),
-  currentHotel: PropTypes.objectOf(PropsValidator.HOTEL),
+  hotel: PropTypes.shape(PropsValidator.HOTEL),
+  isHotelLoading: PropTypes.bool.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
-  isRoomLoaded: PropTypes.bool.isRequired,
-  onLoadData: PropTypes.func.isRequired,
-  setHotelLoaded: PropTypes.func.isRequired,
-  isCommentsLoading: PropTypes.bool.isRequired
+  comments: PropTypes.arrayOf(PropsValidator.COMMENT),
+  isCommentsLoading: PropTypes.bool.isRequired,
+  nearbyHotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired,
+  isNearbyHotelsLoading: PropTypes.bool.isRequired,
+  onLoadData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    currentHotel: state.currentHotel,
-    isRoomLoaded: state.isRoomLoaded,
+    hotel: state.hotel,
+    isHotelLoading: state.isHotelLoading,
     isAuthorized: checkAuthorizationStatus(state.authorizationStatus),
+    comments: state.comments,
     isCommentsLoading: state.isCommentsLoading,
-    comments: state.comments
+    nearbyHotels: state.nearbyHotels,
+    isNearbyHotelsLoading: state.isNearbyHotelsLoading
   };
 };
 
@@ -210,9 +185,7 @@ const mapDispatchToProps = (dispatch) => ({
   onLoadData(id) {
     dispatch(fetchHotel(id));
     dispatch(fetchComments(id));
-  },
-  setHotelLoaded(value) {
-    dispatch(ActionCreator.setHotelLoaded(value));
+    dispatch(fetchNearbyHotels(id));
   }
 });
 
