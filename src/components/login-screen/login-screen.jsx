@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {login, logout} from '../../store/api-actions';
+import {login} from '../../store/api-actions';
 import Header from '../header/header';
 
-const LoginScreen = ({onSubmit, onLoad}) => {
+const LoginScreen = ({onSubmit}) => {
   const [user, setUser] = useState({
     email: ``,
     password: ``
@@ -31,8 +31,6 @@ const LoginScreen = ({onSubmit, onLoad}) => {
       {...prevUser, [name]: value}
     ));
   };
-
-  onLoad();
 
   return (
     <div className="page page--gray page--login">
@@ -67,16 +65,12 @@ const LoginScreen = ({onSubmit, onLoad}) => {
 };
 
 LoginScreen.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  onLoad: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
     dispatch(login(authData));
-  },
-  onLoad() {
-    dispatch(logout());
   }
 });
 

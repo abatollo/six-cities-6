@@ -10,7 +10,6 @@ const Routes = {
 const APIRoutes = {
   HOTELS: `/hotels`,
   LOGIN: `/login`,
-  LOGOUT: `/logout`,
   COMMENTS: `/comments`,
   FAVORITE: `/favorite`,
 };
