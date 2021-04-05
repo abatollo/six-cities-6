@@ -2,7 +2,7 @@ import React from 'react';
 
 import Header from '../header/header';
 
-const NotFoundPage = () => {
+const NotFoundScreen = () => {
   return (
     <div className="page page--gray page--login">
       <Header />
@@ -14,4 +14,4 @@ const NotFoundPage = () => {
   );
 };
 
-export default NotFoundPage;
+export default NotFoundScreen;

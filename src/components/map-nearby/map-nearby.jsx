@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NearbyMap = ({mapRef}) => {
+const MapNearby = ({mapRef}) => {
   return (
     <section id="map" className="property__map map" ref={mapRef} />
   );
 };
 
-NearbyMap.propTypes = {
+MapNearby.propTypes = {
   mapRef: PropTypes.object.isRequired
 };
 
-export default NearbyMap;
+export default MapNearby;

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import MainCard from '../main-card/main-card';
 
 import {PropsValidator} from '../../utils/props-validator';
-import PlacesSorting from '../places-sorting/places-sorting';
+import MainListSorting from '../main-list-sorting/main-list-sorting';
 
 import {ActionCreator} from '../../store/action';
 
@@ -14,7 +14,7 @@ const MainList = ({sortedFilteredHotels, currentCity, onMouseOver}) => {
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">{sortedFilteredHotels.length} places to stay in {currentCity}</b>
-      <PlacesSorting />
+      <MainListSorting />
       <div className="cities__places-list places__list tabs__content">
         {sortedFilteredHotels.map((hotel) =>
           <MainCard
