@@ -15,6 +15,19 @@ export const fetchHotels = () => (dispatch, _getState, api) => {
     });
 };
 
+export const setFavoriteList = (id, status) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setFavoriteListStart());
+
+  api.post(APIRouteMethods.setFavorite(id, status))
+    .then(({data}) => {
+      const hotels = _getState().hotels;
+      dispatch(ActionCreator.setFavoriteListSuccess(hotels.map((hotel) => hotel.id === id ? adaptHotelToClient(data) : hotel)));
+    })
+    .catch(() => {
+      dispatch(ActionCreator.setFavoriteListFail());
+    });
+};
+
 export const fetchHotel = (id) => (dispatch, _getState, api) => {
   dispatch(ActionCreator.fetchHotelStart());
 
@@ -76,6 +89,19 @@ export const fetchNearbyHotels = (id) => (dispatch, _getState, api) => {
     });
 };
 
+export const setFavoriteNearby = (id, status) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setFavoriteNearbyStart());
+
+  api.post(APIRouteMethods.setFavorite(id, status))
+    .then(({data}) => {
+      const nearbyHotels = _getState().nearbyHotels;
+      dispatch(ActionCreator.setFavoriteNearbySuccess(nearbyHotels.map((hotel) => hotel.id === id ? adaptHotelToClient(data) : hotel)));
+    })
+    .catch(() => {
+      dispatch(ActionCreator.setFavoriteNearbyFail());
+    });
+};
+
 export const fetchFavoriteHotels = () => (dispatch, _getState, api) => {
   dispatch(ActionCreator.fetchFavoriteHotelsStart());
 
@@ -85,6 +111,19 @@ export const fetchFavoriteHotels = () => (dispatch, _getState, api) => {
     })
     .catch(() => {
       dispatch(ActionCreator.fetchFavoriteHotelsFail());
+    });
+};
+
+export const setFavoriteFavorites = (id, status) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setFavoriteFavoritesStart());
+
+  api.post(APIRouteMethods.setFavorite(id, status))
+    .then(({data}) => {
+      const favoriteHotels = _getState().favoriteHotels;
+      dispatch(ActionCreator.setFavoriteFavoritesSuccess(favoriteHotels.map((hotel) => hotel.id === id ? adaptHotelToClient(data) : hotel)));
+    })
+    .catch(() => {
+      dispatch(ActionCreator.setFavoriteFavoritesFail());
     });
 };
 

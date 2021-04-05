@@ -12,7 +12,7 @@ import NearList from '../near-list/near-list';
 import StarRating from '../star-rating/star-rating';
 import LoadingScreen from '../loading-screen/loading-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
-import BookmarkButton from '../bookmark-button/bookmark-button';
+import BookmarkButtonProperty from '../bookmark-button-property/bookmark-button-property';
 
 import {PropsValidator} from '../../utils/props-validator';
 import {fetchHotel, fetchComments, fetchNearbyHotels} from '../../store/api-actions';
@@ -79,7 +79,7 @@ const PropertyScreen = ({hotel, isHotelLoading, isAuthorized, comments, isCommen
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <BookmarkButton />
+                <BookmarkButtonProperty />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">

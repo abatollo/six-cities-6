@@ -9,6 +9,10 @@ const ActionType = {
 
   CHANGE_ACTIVE_HOTEL: `CHANGE_ACTIVE_HOTEL`,
 
+  SET_FAVORITE_LIST_START: `SET_FAVORITE_LIST_START`,
+  SET_FAVORITE_LIST_SUCCESS: `SET_FAVORITE_LIST_SUCCESS`,
+  SET_FAVORITE_LIST_FAIL: `SET_FAVORITE_LIST_FAIL`,
+
   FETCH_HOTEL_START: `FETCH_HOTEL_START`,
   FETCH_HOTEL_SUCCESS: `FETCH_HOTEL_SUCCESS`,
   FETCH_HOTEL_FAIL: `FETCH_HOTEL_FAIL`,
@@ -29,9 +33,17 @@ const ActionType = {
   FETCH_NEARBY_HOTELS_SUCCESS: `FETCH_NEARBY_HOTELS_SUCCESS`,
   FETCH_NEARBY_HOTELS_FAIL: `FETCH_NEARBY_HOTELS_FAIL`,
 
+  SET_FAVORITE_NEARBY_START: `SET_FAVORITE_NEARBY_START`,
+  SET_FAVORITE_NEARBY_SUCCESS: `SET_FAVORITE_NEARBY_SUCCESS`,
+  SET_FAVORITE_NEARBY_FAIL: `SET_FAVORITE_NEARBY_FAIL`,
+
   FETCH_FAVORITE_HOTELS_START: `FETCH_FAVORITE_HOTELS_START`,
   FETCH_FAVORITE_HOTELS_SUCCESS: `FETCH_FAVORITE_HOTELS_SUCCESS`,
   FETCH_FAVORITE_HOTELS_FAIL: `FETCH_FAVORITE_HOTELS_FAIL`,
+
+  SET_FAVORITE_FAVORITES_START: `SET_FAVORITE_FAVORITES_START`,
+  SET_FAVORITE_FAVORITES_SUCCESS: `SET_FAVORITE_FAVORITES_SUCCESS`,
+  SET_FAVORITE_FAVORITES_FAIL: `SET_FAVORITE_FAVORITES_FAIL`,
 
   SHOW_ERROR: `SHOW_ERROR`,
   REMOVE_ERROR: `REMOVE_ERROR`,
@@ -75,6 +87,21 @@ const ActionCreator = {
   changeActiveHotel: (payload) => ({
     type: ActionType.CHANGE_ACTIVE_HOTEL,
     payload
+  }),
+
+  // SET_FAVORITE_LIST
+
+  setFavoriteListStart: () => ({
+    type: ActionType.SET_FAVORITE_LIST_START,
+  }),
+
+  setFavoriteListSuccess: (payload) => ({
+    type: ActionType.SET_FAVORITE_LIST_SUCCESS,
+    payload
+  }),
+
+  setFavoriteListFail: () => ({
+    type: ActionType.SET_FAVORITE_LIST_FAIL
   }),
 
   // FETCH_HOTEL
@@ -151,6 +178,21 @@ const ActionCreator = {
     type: ActionType.FETCH_NEARBY_HOTELS_FAIL
   }),
 
+  // SET_FAVORITE_NEARBY
+
+  setFavoriteNearbyStart: () => ({
+    type: ActionType.SET_FAVORITE_NEARBY_START,
+  }),
+
+  setFavoriteNearbySuccess: (payload) => ({
+    type: ActionType.SET_FAVORITE_NEARBY_SUCCESS,
+    payload
+  }),
+
+  setFavoriteNearbyFail: () => ({
+    type: ActionType.SET_FAVORITE_NEARBY_FAIL
+  }),
+
   // FETCH_FAVORITE_HOTELS
 
   fetchFavoriteHotelsStart: () => ({
@@ -164,6 +206,21 @@ const ActionCreator = {
 
   fetchFavoriteHotelsFail: () => ({
     type: ActionType.FETCH_FAVORITE_HOTELS_FAIL
+  }),
+
+  // SET_FAVORITE_FAVORITES
+
+  setFavoriteFavoritesStart: () => ({
+    type: ActionType.SET_FAVORITE_FAVORITES_START,
+  }),
+
+  setFavoriteFavoritesSuccess: (payload) => ({
+    type: ActionType.SET_FAVORITE_FAVORITES_SUCCESS,
+    payload
+  }),
+
+  setFavoriteFavoritesFail: () => ({
+    type: ActionType.SET_FAVORITE_FAVORITES_FAIL
   }),
 
   // ERROR

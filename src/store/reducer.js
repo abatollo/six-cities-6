@@ -11,6 +11,8 @@ const initialState = {
 
   activeId: null,
 
+  isSettingFavoriteList: false,
+
   hotel: null,
   isHotelLoading: false,
 
@@ -23,9 +25,11 @@ const initialState = {
 
   nearbyHotels: [],
   isNearbyHotelsLoading: false,
+  isSettingFavoriteNearby: false,
 
   favoriteHotels: [],
   isFavoriteHotelsLoading: false,
+  isSettingFavoriteFavorites: false,
 
   isError: false,
 };
@@ -78,6 +82,28 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         activeId: action.payload
+      };
+
+      // SET_FAVORITE_LIST
+
+    case ActionType.SET_FAVORITE_LIST_START:
+      return {
+        ...state,
+        isSettingFavoriteList: true
+      };
+
+    case ActionType.SET_FAVORITE_LIST_SUCCESS:
+      return {
+        ...state,
+        hotels: action.payload,
+        isSettingFavoriteList: false
+      };
+
+    case ActionType.SET_FAVORITE_LIST_FAIL:
+      return {
+        ...state,
+        isSettingFavoriteList: false,
+        isError: true
       };
 
       // FETCH_HOTEL
@@ -192,6 +218,28 @@ const reducer = (state = initialState, action) => {
         isError: true
       };
 
+      // SET_FAVORITE_NEARBY
+
+    case ActionType.SET_FAVORITE_NEARBY_START:
+      return {
+        ...state,
+        isSettingFavoriteNearby: true
+      };
+
+    case ActionType.SET_FAVORITE_NEARBY_SUCCESS:
+      return {
+        ...state,
+        nearbyHotels: action.payload,
+        isSettingFavoriteNearby: false
+      };
+
+    case ActionType.SET_FAVORITE_NEARBY_FAIL:
+      return {
+        ...state,
+        isSettingFavoriteNearby: false,
+        isError: true
+      };
+
       // FETCH_FAVORITE_HOTELS
 
     case ActionType.FETCH_FAVORITE_HOTELS_START:
@@ -211,6 +259,28 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isFavoriteHotelsLoading: false,
+        isError: true
+      };
+
+      // SET_FAVORITE_FAVORITES
+
+    case ActionType.SET_FAVORITE_FAVORITES_START:
+      return {
+        ...state,
+        isSettingFavoriteFavorites: true
+      };
+
+    case ActionType.SET_FAVORITE_FAVORITES_SUCCESS:
+      return {
+        ...state,
+        favoriteHotels: action.payload,
+        isSettingFavoriteFavorites: false
+      };
+
+    case ActionType.SET_FAVORITE_FAVORITES_FAIL:
+      return {
+        ...state,
+        isSettingFavoriteFavorites: false,
         isError: true
       };
 

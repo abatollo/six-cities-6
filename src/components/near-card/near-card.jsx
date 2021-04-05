@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import CardFragment from '../card-fragment/card-fragment';
 
 import {PropsValidator} from '../../utils/props-validator';
 
-const NearCard = ({hotel}) => {
+const NearCard = ({hotel, onButtonClick}) => {
   return (
     <article className="near-places__card place-card">
       <div className="near-places__image-wrapper place-card__image-wrapper">
@@ -13,14 +14,15 @@ const NearCard = ({hotel}) => {
         </a>
       </div>
       <div className="place-card__info">
-        <CardFragment hotel={hotel} />
+        <CardFragment hotel={hotel} onButtonClick={onButtonClick} />
       </div>
     </article>
   );
 };
 
 NearCard.propTypes = {
-  hotel: PropsValidator.HOTEL
+  hotel: PropsValidator.HOTEL,
+  onButtonClick: PropTypes.func.isRequired
 };
 
 export default NearCard;

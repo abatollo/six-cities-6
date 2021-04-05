@@ -2,16 +2,17 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
+import MainListSorting from '../main-list-sorting/main-list-sorting';
 import MainCard from '../main-card/main-card';
 import Map from '../map/map';
 import MainMap from '../map-main/map-main';
 
 import {PropsValidator} from '../../utils/props-validator';
-import MainListSorting from '../main-list-sorting/main-list-sorting';
+import {setFavoriteList} from '../../store/api-actions';
 
 import {ActionCreator} from '../../store/action';
 
-const MainList = ({sortedFilteredHotels, currentCity, onMouseOver}) => {
+const MainList = ({sortedFilteredHotels, currentCity, onMouseOver, onButtonClick}) => {
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
@@ -24,6 +25,7 @@ const MainList = ({sortedFilteredHotels, currentCity, onMouseOver}) => {
               key={hotel.id}
               hotel={hotel}
               onMouseOver={() => onMouseOver(hotel.id)}
+              onButtonClick={onButtonClick}
             />)}
         </div>
       </section>
@@ -46,12 +48,16 @@ const MainList = ({sortedFilteredHotels, currentCity, onMouseOver}) => {
 MainList.propTypes = {
   sortedFilteredHotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired,
   currentCity: PropTypes.string.isRequired,
-  onMouseOver: PropTypes.func.isRequired
+  onMouseOver: PropTypes.func.isRequired,
+  onButtonClick: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onMouseOver(id) {
     dispatch(ActionCreator.changeActiveHotel(id));
+  },
+  onButtonClick(id, isFavorite) {
+    dispatch(setFavoriteList(id, isFavorite));
   }
 });
 

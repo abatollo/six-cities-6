@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import CardFragment from '../card-fragment/card-fragment';
 import {PropsValidator} from '../../utils/props-validator';
 
-const FavoriteCard = ({hotel}) => {
+const FavoriteCard = ({hotel, onButtonClick}) => {
   const {previewImage} = hotel;
 
   return (
@@ -14,14 +15,15 @@ const FavoriteCard = ({hotel}) => {
         </a>
       </div>
       <div className="favorites__card-info place-card__info">
-        <CardFragment hotel={hotel} />
+        <CardFragment hotel={hotel} onButtonClick={onButtonClick} />
       </div>
     </article>
   );
 };
 
 FavoriteCard.propTypes = {
-  hotel: PropsValidator.HOTEL
+  hotel: PropsValidator.HOTEL,
+  onButtonClick: PropTypes.func.isRequired
 };
 
 export default FavoriteCard;

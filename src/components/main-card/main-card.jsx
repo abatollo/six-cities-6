@@ -9,6 +9,7 @@ const MainCard = (props) => {
 
   const hotel = props.hotel;
   const onMouseOver = props.onMouseOver;
+  const onButtonClick = props.onButtonClick;
 
   const {isPremium, previewImage, id} = hotel;
 
@@ -29,7 +30,7 @@ const MainCard = (props) => {
         </a>
       </div>
       <div className="place-card__info">
-        <CardFragment hotel={hotel} />
+        <CardFragment hotel={hotel} onButtonClick={onButtonClick} />
       </div>
     </article>
   );
@@ -37,7 +38,8 @@ const MainCard = (props) => {
 
 MainCard.propTypes = {
   hotel: PropsValidator.HOTEL,
-  onMouseOver: PropTypes.func.isRequired
+  onMouseOver: PropTypes.func.isRequired,
+  onButtonClick: PropTypes.func.isRequired
 };
 
 export default MainCard;
