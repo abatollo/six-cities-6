@@ -16,24 +16,24 @@ const PropsValidator = {
         PropTypes.string.isRequired
     ),
     host: PropTypes.shape({
-      avatarUrl: PropTypes.string.isRequired,
+      avatarUrl: PropTypes.string,
       id: PropTypes.number.isRequired,
-      isPro: PropTypes.bool.isRequired,
+      isPro: PropTypes.bool,
       name: PropTypes.string.isRequired
     }),
     id: PropTypes.number.isRequired,
     images: PropTypes.arrayOf(
         PropTypes.string.isRequired
     ),
-    isFavorite: PropTypes.bool.isRequired,
-    isPremium: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool,
+    isPremium: PropTypes.bool,
     location: PropTypes.shape({
       latitude: PropTypes.number.isRequired,
       longitude: PropTypes.number.isRequired,
       zoom: PropTypes.number.isRequired
     }),
-    maxAdults: PropTypes.number.isRequired,
-    previewImage: PropTypes.string.isRequired,
+    maxAdults: PropTypes.number,
+    previewImage: PropTypes.string,
     price: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -132,4 +132,9 @@ export const sortOffers = (currentSort, offers) => {
   }
 };
 
-export {PropsValidator, MapSizes, CITIES};
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
+export {PropsValidator, MapSizes, CITIES, AuthorizationStatus};

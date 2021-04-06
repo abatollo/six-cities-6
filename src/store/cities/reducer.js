@@ -1,12 +1,12 @@
 import {CitiesActionTypes} from './action';
 
-import hotels from '../../mock/hotels';
 import comments from '../../mock/comments';
 
 const initialState = {
   currentCity: `Paris`,
-  hotels,
-  comments
+  hotels: [],
+  comments,
+  isDataLoaded: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,7 +14,8 @@ const reducer = (state = initialState, action) => {
     case CitiesActionTypes.SET_CITIES_LIST:
       return {
         ...state,
-        hotels: action.payload
+        hotels: action.payload,
+        isDataLoaded: true
       };
     case CitiesActionTypes.SET_CURRENT_CITY:
       return {
