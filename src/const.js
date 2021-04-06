@@ -57,6 +57,20 @@ const SORT_LIST = [
   },
 ];
 
+const MAP_CDN_URL = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`;
+
+const MAP_ATTRIBUTION = `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`;
+
+const STAR_GRADING_LEVEL_AMOUNT = 5;
+
+const DISPLAYED_COMMENTS_AMOUNT = 10;
+
+const MIN_USER_REVIEW_TEXT_LENGTH = 30;
+
+const MAX_USER_REVIEW_TEXT_LENGTH = 500;
+
+const ERROR_DISPLAY_TIMEOUT = 3000;
+
 const FavoriteStatus = {
   ON: 1,
   OFF: 0,
@@ -67,4 +81,17 @@ const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
-export {CITIES, SORT_TYPES, SORT_LIST, FavoriteStatus, AuthorizationStatus};
+export {
+  CITIES,
+  SORT_TYPES,
+  SORT_LIST,
+  MAP_CDN_URL,
+  MAP_ATTRIBUTION,
+  STAR_GRADING_LEVEL_AMOUNT,
+  DISPLAYED_COMMENTS_AMOUNT,
+  MIN_USER_REVIEW_TEXT_LENGTH,
+  MAX_USER_REVIEW_TEXT_LENGTH,
+  ERROR_DISPLAY_TIMEOUT,
+  FavoriteStatus,
+  AuthorizationStatus
+};

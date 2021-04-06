@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import BookmarkButtonFragment from '../bookmark-button-fragment/bookmark-button-fragment';
+import StarRating from '../star-rating/star-rating';
 
 import {PropsValidator} from '../../utils/props-validator';
 import {Routes} from '../../routes';
@@ -28,12 +29,12 @@ const CardFragment = ({hotel, isAuthorized, onButtonClick}) => {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: `${Math.min(Math.round(rating) * 100 / 5, 100)}%`}}></span>
+          <StarRating rating={rating} />
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
       <h2 className="place-card__name">
-        <Link to={Routes.HOTELS.replace(`:id`, id)}>{title}</Link>
+        <Link to={Routes.OFFER.replace(`:id`, id)}>{title}</Link>
       </h2>
       <p className="place-card__type" style={{textTransform: `capitalize`}}>{type}</p>
     </>

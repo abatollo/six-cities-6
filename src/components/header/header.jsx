@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import {Routes} from '../../routes';
 import {checkAuthorizationStatus} from '../../utils/check-authorization-status';
 
-const Header = ({isAuthorized}) => {
+const Header = ({isAuthorized, userEmail}) => {
   return (
     <header className="header">
       <div className="container">
@@ -23,7 +23,7 @@ const Header = ({isAuthorized}) => {
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
                   {isAuthorized ?
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span> :
+                    <span className="header__user-name user__name">{userEmail}</span> :
                     <span className="header__login">Sign in</span>}
                 </Link>
               </li>
@@ -36,12 +36,14 @@ const Header = ({isAuthorized}) => {
 };
 
 Header.propTypes = {
-  isAuthorized: PropTypes.bool.isRequired
+  isAuthorized: PropTypes.bool.isRequired,
+  userEmail: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
   return {
-    isAuthorized: checkAuthorizationStatus(state.authorizationStatus)
+    isAuthorized: checkAuthorizationStatus(state.authorizationStatus),
+    userEmail: state.userEmail
   };
 };
 

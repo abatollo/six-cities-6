@@ -3,6 +3,7 @@ import {SORT_TYPES, AuthorizationStatus} from '../const';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  userEmail: ``,
   currentCity: `Paris`,
   currentSort: SORT_TYPES.POPULAR,
 
@@ -40,6 +41,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         authorizationStatus: action.payload,
+      };
+
+    case ActionType.CHANGE_EMAIL:
+      return {
+        ...state,
+        userEmail: action.payload,
       };
 
     case ActionType.CHANGE_CURRENT_CITY:

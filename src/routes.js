@@ -4,7 +4,7 @@ const Routes = {
   MAIN: `/`,
   LOGIN: `/login`,
   FAVORITES: `/favorites`,
-  HOTELS: `/hotels/:id`
+  OFFER: `/offer/:id`
 };
 
 const APIRoutes = {

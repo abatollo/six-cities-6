@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 
 import {ActionCreator} from '../../store/action';
 
+import {ERROR_DISPLAY_TIMEOUT} from '../../const';
+
 const Error = ({onTimerEnd}) => {
   const divStyle = {
     display: `flex`,
@@ -24,7 +26,7 @@ const Error = ({onTimerEnd}) => {
     setTimeout(() => {
       setErrorVisibility(false);
       onTimerEnd();
-    }, 3000);
+    }, ERROR_DISPLAY_TIMEOUT);
   }, [onTimerEnd]);
 
   return isErrorVisible && (
