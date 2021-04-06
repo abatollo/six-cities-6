@@ -1,20 +1,29 @@
-import React, {useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+
 import leaflet from 'leaflet';
-import PropTypes from "prop-types";
-import {PropsValidator, MapSizes} from "../../utils";
 import 'leaflet/dist/leaflet.css';
 
-const Map = ({hotels, size}) => {
+import {PropsValidator} from '../../utils';
+
+const MapIcons = {
+  MAIN: `./img/pin.svg`,
+  ACTIVE: `./img/pin-active.svg`
+};
+
+const Map = ({points, render, activeId}) => {
   const mapRef = useRef();
+
+  const city = points[0].city.location;
 
   useEffect(() => {
     mapRef.current = leaflet.map(`map`, {
-      center: [
-        hotels[0].city.location.latitude,
-        hotels[0].city.location.longitude
-      ],
-      zoom: hotels[0].city.location.zoom,
-      zoomControl: false
+      center: {
+        lat: city.latitude,
+        lng: city.longitude
+      },
+      zoom: city.zoom
     });
 
     leaflet
@@ -23,31 +32,51 @@ const Map = ({hotels, size}) => {
       })
       .addTo(mapRef.current);
 
-    hotels.forEach((hotel) => {
+    return () => {
+      mapRef.current.remove();
+    };
+  }, [city]);
+
+  useEffect(() => {
+    const map = leaflet.layerGroup().addTo(mapRef.current);
+    points.forEach((point) => {
       const customIcon = leaflet.icon({
-        iconUrl: `img/pin.svg`,
+        iconUrl: point.id === activeId ? MapIcons.ACTIVE : MapIcons.MAIN,
         iconSize: [27, 39]
       });
 
-      leaflet.marker([
-        hotel.location.latitude,
-        hotel.location.longitude
-      ],
+      leaflet.marker({
+        lat: point.location.latitude,
+        lng: point.location.longitude
+      },
       {
         icon: customIcon
       })
-      .addTo(mapRef.current);
+      .addTo(mapRef.current)
+      .bindPopup(point.title);
     });
-  }, []);
+    return () => map.clearLayers();
+  }, [points, activeId]);
 
   return (
-    <section id="map" className="cities__map map" ref={mapRef} style={{height: `${MapSizes[size]}`}} />
+    render(mapRef)
   );
 };
 
 Map.propTypes = {
-  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired,
-  size: PropTypes.oneOf([`auto`, `small`])
+  city: PropTypes.shape({
+    latitude: PropTypes.number.isRequired,
+    longitude: PropTypes.number.isRequired,
+    zoom: PropTypes.number.isRequired,
+  }),
+  points: PropsValidator.HOTELS,
+  activeId: PropTypes.number
 };
 
-export default Map;
+const mapStateToProps = (state) => {
+  return {
+    activeId: state.map.activeId
+  };
+};
+
+export default connect(mapStateToProps, null)(Map);

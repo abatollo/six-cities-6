@@ -1,7 +1,9 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router} from "react-router-dom";
 import {Routes} from "../../routes";
+import browserHistory from "../../browser-history";
+import PrivateRoute from "../private-route/private-route";
 import PropTypes from "prop-types";
 import MainScreen from "../main-screen/main-screen";
 import LoginScreen from "../login-screen/login-screen";
@@ -26,7 +28,7 @@ const App = ({isDataLoaded, onLoadData}) => {
   }
 
   return (
-    <BrowserRouter>
+    <Router history={browserHistory}>
       <Switch>
         <Route exact path={Routes.MAIN}>
           <MainScreen />
@@ -34,9 +36,15 @@ const App = ({isDataLoaded, onLoadData}) => {
         <Route exact path={Routes.LOGIN}>
           <LoginScreen />
         </Route>
-        <Route exact path={Routes.FAVORITES}>
-          <FavoritesScreen />
-        </Route>
+        <PrivateRoute
+          exact
+          path={Routes.FAVORITES}
+          render={() => {
+            return (
+              <FavoritesScreen />
+            );
+          }}
+        />
         <Route exact path={Routes.HOTELS}>
           <PropertyScreen />
         </Route>
@@ -44,7 +52,7 @@ const App = ({isDataLoaded, onLoadData}) => {
           <NotFoundScreen />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 

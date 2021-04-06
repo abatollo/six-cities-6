@@ -1,16 +1,15 @@
 import React from "react";
-import {connect} from 'react-redux';
+import {connect} from "react-redux";
 import Header from "../header/header";
 import MainList from "../main-list/main-list";
 import Map from "../map/map";
-import CitiesList from '../cities-list/cities-list';
+import CitiesList from "../cities-list/cities-list";
 import MainListEmpty from "../main-list-empty/main-list-empty";
 import PropTypes from "prop-types";
 import {PropsValidator, sortOffers, filterOffersByCity} from "../../utils";
+import MainMap from "../map-main/map-main";
 
-const MainScreen = ({hotels, currentCity}) => {
-  const filteredHotels = hotels.filter((hotel) => hotel.city.name === currentCity);
-
+const MainScreen = ({hotels}) => {
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -27,7 +26,12 @@ const MainScreen = ({hotels, currentCity}) => {
                 <MainListEmpty />
             }
             <div className="cities__right-section">
-              <Map hotels={filteredHotels} size="auto" />
+              <Map
+                points={hotels}
+                render={(ref) => {
+                  return (<MainMap mapRef={ref} />);
+                }}
+              />
             </div>
           </div>
         </div>
@@ -37,8 +41,7 @@ const MainScreen = ({hotels, currentCity}) => {
 };
 
 MainScreen.propTypes = {
-  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired,
-  currentCity: PropTypes.string.isRequired
+  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
 };
 
 const mapStateToProps = (state) => {

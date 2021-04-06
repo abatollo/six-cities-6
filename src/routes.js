@@ -5,4 +5,10 @@ const Routes = {
   HOTELS: `/hotels/:id`
 };
 
-export {Routes};
+const APIRoutes = {
+  HOTELS: `/hotels`,
+  LOGIN: `/login`,
+  LOGOUT: `/logout`
+};
+
+export {Routes, APIRoutes};
