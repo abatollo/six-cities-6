@@ -28,8 +28,8 @@ NearList.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onButtonClick(id, isFavorite) {
-    dispatch(setFavoriteNearby(id, isFavorite));
+  onButtonClick(id, isFavorite, isAuthorized) {
+    dispatch(setFavoriteNearby(id, isFavorite, isAuthorized));
   }
 });
 
