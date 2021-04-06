@@ -98,6 +98,7 @@ export const fetchNearbyHotels = (id) => (dispatch, _getState, api) => {
 };
 
 export const setFavoriteNearby = (id, status, isAuthorized) => (dispatch, _getState, api) => {
+  console.log(isAuthorized);
   if (isAuthorized) {
     dispatch(ActionCreator.setFavoriteNearbyStart());
 
