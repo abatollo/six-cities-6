@@ -17,6 +17,7 @@ import BookmarkButtonProperty from '../bookmark-button-property/bookmark-button-
 import {PropsValidator} from '../../utils/props-validator';
 import {fetchHotel, fetchComments, fetchNearbyHotels} from '../../store/api-actions';
 import {checkAuthorizationStatus} from '../../utils/check-authorization-status';
+import {ActionCreator} from '../../store/action';
 
 const PropertyScreen = ({hotel, isHotelLoading, isAuthorized, comments, isCommentsLoading, nearbyHotels, isNearbyHotelsLoading, onLoadData}) => {
   const id = Number(useParams().id);
@@ -54,6 +55,9 @@ const PropertyScreen = ({hotel, isHotelLoading, isAuthorized, comments, isCommen
       avatarURL: hostAvatarURL
     }
   } = hotel;
+
+  const nearbyHotelsMap = nearbyHotels;
+  nearbyHotelsMap.push(hotel);
 
   return (
     <div className="page">
@@ -138,7 +142,7 @@ const PropertyScreen = ({hotel, isHotelLoading, isAuthorized, comments, isCommen
           <section className="property__map map">
             {!isNearbyHotelsLoading ? <Map
               city={nearbyHotels[0].city.location}
-              points={nearbyHotels}
+              points={nearbyHotelsMap}
               render={(ref) => {
                 return (<MapNearby mapRef={ref} />);
               }}
@@ -186,6 +190,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchHotel(id));
     dispatch(fetchComments(id));
     dispatch(fetchNearbyHotels(id));
+    dispatch(ActionCreator.changeActiveHotel(id));
   }
 });
 
