@@ -43,6 +43,12 @@ const reducer = (state = initialState, action) => {
         authorizationStatus: action.payload,
       };
 
+    case ActionType.CHANGE_EMAIL:
+      return {
+        ...state,
+        userEmail: action.payload,
+      };
+
     case ActionType.CHANGE_CURRENT_CITY:
       return {
         ...state,

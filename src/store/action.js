@@ -1,5 +1,6 @@
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  CHANGE_EMAIL: `CHANGE_EMAIL`,
   CHANGE_CURRENT_CITY: `CHANGE_CURRENT_CITY`,
   CHANGE_SORT: `CHANGE_SORT`,
 
@@ -55,6 +56,11 @@ const ActionCreator = {
   requireAuthorization: (payload) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload,
+  }),
+
+  changeEmail: (payload) => ({
+    type: ActionType.CHANGE_EMAIL,
+    payload
   }),
 
   changeCurrentCity: (payload) => ({
