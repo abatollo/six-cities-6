@@ -2,10 +2,10 @@ import React, {useRef} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {SortActionCreator} from '../../store/sort/action';
-import {SORT_LIST} from '../../utils';
+import {ActionCreator} from '../../store/action';
+import {SORT_LIST} from '../../const';
 
-const Sort = ({changeSort, currentSort}) => {
+const MainListSorting = ({changeSort, currentSort}) => {
   const selectRef = useRef();
 
   const handleClickSelect = () => {
@@ -45,19 +45,19 @@ const Sort = ({changeSort, currentSort}) => {
   );
 };
 
-Sort.propTypes = {
+MainListSorting.propTypes = {
   changeSort: PropTypes.func.isRequired,
   currentSort: PropTypes.string.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
   changeSort(currentSort) {
-    dispatch(SortActionCreator.changeSort(currentSort));
+    dispatch(ActionCreator.changeSort(currentSort));
   }
 });
 
 const mapStateToProps = (state) => ({
-  currentSort: state.sort.currentSort
+  currentSort: state.currentSort
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sort);
+export default connect(mapStateToProps, mapDispatchToProps)(MainListSorting);

@@ -1,74 +1,58 @@
-import React, {useEffect} from "react";
-import {connect} from "react-redux";
-import {Switch, Route, Router} from "react-router-dom";
-import {Routes} from "../../routes";
-import browserHistory from "../../browser-history";
-import PrivateRoute from "../private-route/private-route";
-import PropTypes from "prop-types";
-import MainScreen from "../main-screen/main-screen";
-import LoginScreen from "../login-screen/login-screen";
-import FavoritesScreen from "../favorites-screen/favorites-screen";
-import PropertyScreen from "../property-screen/property-screen";
-import NotFoundScreen from "../not-found-screen/not-found-screen";
-import LoadingScreen from "../loading-screen/loading-screen";
-import {fetchHotelsList} from "../../store/api-actions";
+import React from 'react';
+import {Switch, Route, Router} from 'react-router-dom';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
-const App = ({isDataLoaded, onLoadData}) => {
+import MainScreen from '../main-screen/main-screen';
+import LoginScreen from '../login-screen/login-screen';
+import FavoritesScreen from '../favorites-screen/favorites-screen';
+import PropertyScreen from '../property-screen/property-screen';
+import NotFoundScreen from '../not-found-screen/not-found-screen';
+import Error from '../error/error';
 
-  useEffect(() => {
-    if (!isDataLoaded) {
-      onLoadData();
-    }
-  }, [isDataLoaded]);
+import browserHistory from '../../browser-history';
+import PrivateRoute from '../private-route/private-route';
+import {Routes} from '../../routes';
 
-  if (!isDataLoaded) {
-    return (
-      <LoadingScreen />
-    );
-  }
-
+const App = ({isError}) => {
   return (
-    <Router history={browserHistory}>
-      <Switch>
-        <Route exact path={Routes.MAIN}>
-          <MainScreen />
-        </Route>
-        <Route exact path={Routes.LOGIN}>
-          <LoginScreen />
-        </Route>
-        <PrivateRoute
-          exact
-          path={Routes.FAVORITES}
-          render={() => {
-            return (
-              <FavoritesScreen />
-            );
-          }}
-        />
-        <Route exact path={Routes.HOTELS}>
-          <PropertyScreen />
-        </Route>
-        <Route>
-          <NotFoundScreen />
-        </Route>
-      </Switch>
-    </Router>
+    <>
+      <Router history={browserHistory}>
+        <Switch>
+          <Route exact path={Routes.MAIN}>
+            <MainScreen />
+          </Route>
+          <Route exact path={Routes.LOGIN}>
+            <LoginScreen />
+          </Route>
+          <PrivateRoute
+            exact
+            path={Routes.FAVORITES}
+            render={() => {
+              return (
+                <FavoritesScreen />
+              );
+            }}
+          />
+          <Route exact path={Routes.HOTELS}>
+            <PropertyScreen />
+          </Route>
+          <Route>
+            <NotFoundScreen />
+          </Route>
+        </Switch>
+      </Router>
+      {isError && <Error />}
+    </>
   );
 };
 
 const mapStateToProps = (state) => ({
-  isDataLoaded: state.cities.isDataLoaded,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadData() {
-    dispatch(fetchHotelsList());
-  },
+  isError: state.isError
 });
 
 App.propTypes = {
-  isDataLoaded: PropTypes.bool.isRequired,
-  onLoadData: PropTypes.func.isRequired,
+  isError: PropTypes.bool.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);

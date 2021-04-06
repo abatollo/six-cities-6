@@ -1,11 +1,11 @@
 import {useEffect, useRef} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-
 import leaflet from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 
-import {PropsValidator} from '../../utils';
+import {PropsValidator} from '../../utils/props-validator';
+
+import 'leaflet/dist/leaflet.css';
 
 const MapIcons = {
   MAIN: `./img/pin.svg`,
@@ -69,13 +69,13 @@ Map.propTypes = {
     longitude: PropTypes.number.isRequired,
     zoom: PropTypes.number.isRequired,
   }),
-  points: PropsValidator.HOTELS,
+  points: PropTypes.arrayOf(PropsValidator.HOTEL),
   activeId: PropTypes.number
 };
 
 const mapStateToProps = (state) => {
   return {
-    activeId: state.map.activeId
+    activeId: state.activeId
   };
 };
 

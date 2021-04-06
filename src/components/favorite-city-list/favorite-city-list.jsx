@@ -1,9 +1,13 @@
-import React from "react";
-import {PropsValidator} from "../../utils";
-import PropTypes from "prop-types";
-import FavoriteCard from "../favorite-card/favorite-card";
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-const FavoriteCityList = ({city, hotels}) => {
+import FavoriteCard from '../favorite-card/favorite-card';
+
+import {PropsValidator} from '../../utils/props-validator';
+import {setFavoriteFavorites} from '../../store/api-actions';
+
+const FavoriteCityList = ({hotels, city, isAuthorized, onButtonClick}) => {
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
@@ -18,6 +22,8 @@ const FavoriteCityList = ({city, hotels}) => {
           <FavoriteCard
             key={hotel.id}
             hotel={hotel}
+            isAuthorized={isAuthorized}
+            onButtonClick={onButtonClick}
           />)}
       </div>
     </li>
@@ -26,7 +32,15 @@ const FavoriteCityList = ({city, hotels}) => {
 
 FavoriteCityList.propTypes = {
   hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired,
-  city: PropTypes.string.isRequired
+  city: PropTypes.string.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
+  onButtonClick: PropTypes.func.isRequired
 };
 
-export default FavoriteCityList;
+const mapDispatchToProps = (dispatch) => ({
+  onButtonClick(id, isFavorite, isAuthorized) {
+    dispatch(setFavoriteFavorites(id, isFavorite, isAuthorized));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(FavoriteCityList);

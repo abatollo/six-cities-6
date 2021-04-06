@@ -1,42 +1,70 @@
-import React from "react";
+import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {PropsValidator} from "../../utils";
-import PropTypes from "prop-types";
-import FavoriteCityList from "../favorite-city-list/favorite-city-list";
 
-const FavoritesList = ({hotels}) => {
-  const citiesWithHotels = hotels.reduce((byCities, hotel) => {
-    if (hotel.isFavorite) {
-      if (hotel.city.name in byCities) {
-        byCities[hotel.city.name].push(hotel);
-      } else {
-        byCities[hotel.city.name] = [hotel];
-      }
+import LoadingScreen from '../loading-screen/loading-screen';
+import FavoritesListEmpty from '../favorites-list-empty/favorites-list-empty';
+import FavoriteCityList from '../favorite-city-list/favorite-city-list';
+
+import {PropsValidator} from '../../utils/props-validator';
+import {sortHotelsByCities} from '../../utils/sort-hotels-by-cities';
+import {checkAuthorizationStatus} from '../../utils/check-authorization-status';
+import {fetchFavoriteHotels} from '../../store/api-actions';
+
+const FavoritesList = ({favoriteHotels, isFavoriteHotelsLoading, isAuthorized, onLoadData}) => {
+  useEffect(() => {
+    if (!isFavoriteHotelsLoading) {
+      onLoadData();
     }
+  }, []);
 
-    return byCities;
-  }, {});
+  if (isFavoriteHotelsLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
+  if (!favoriteHotels.length) {
+    return (
+      <FavoritesListEmpty />
+    );
+  }
 
   return (
-    <ul className="favorites__list">
-      {Object.entries(citiesWithHotels).map(([city, cityHotels]) => <FavoriteCityList
-        key={city}
-        city={city}
-        hotels={cityHotels}
-      />
-      )}
-    </ul>
+    <section className="favorites">
+      <h1 className="favorites__title">Saved listing</h1>
+      <ul className="favorites__list">
+        {Object.entries(sortHotelsByCities(favoriteHotels)).map(([city, cityHotels]) => <FavoriteCityList
+          key={city}
+          city={city}
+          hotels={cityHotels}
+          isAuthorized={isAuthorized}
+        />
+        )}
+      </ul>
+    </section>
   );
 };
 
 FavoritesList.propTypes = {
-  hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired
+  favoriteHotels: PropTypes.arrayOf(PropsValidator.HOTEL),
+  isFavoriteHotelsLoading: PropTypes.bool.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
+  onLoadData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    hotels: state.cities.hotels
+    favoriteHotels: state.favoriteHotels,
+    isFavoriteHotelsLoading: state.isFavoriteHotelsLoading,
+    isAuthorized: checkAuthorizationStatus(state.authorizationStatus)
   };
 };
 
-export default connect(mapStateToProps, null)(FavoritesList);
+const mapDispatchToProps = (dispatch) => ({
+  onLoadData() {
+    dispatch(fetchFavoriteHotels());
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavoritesList);

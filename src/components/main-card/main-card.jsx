@@ -1,13 +1,11 @@
-import React from "react";
-import {PropsValidator} from "../../utils";
-import PropTypes from "prop-types";
-import CardFragment from "../card-fragment/card-fragment";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const MainCard = (props) => {
+import CardFragment from '../card-fragment/card-fragment';
 
-  const hotel = props.hotel;
-  const onMouseOver = props.onMouseOver;
+import {PropsValidator} from '../../utils/props-validator';
 
+const MainCard = ({hotel, isAuthorized, onMouseOver, onButtonClick}) => {
   const {isPremium, previewImage, id} = hotel;
 
   const handleMouseOver = () => {
@@ -27,7 +25,7 @@ const MainCard = (props) => {
         </a>
       </div>
       <div className="place-card__info">
-        <CardFragment hotel={hotel} />
+        <CardFragment hotel={hotel} isAuthorized={isAuthorized} onButtonClick={onButtonClick} />
       </div>
     </article>
   );
@@ -35,7 +33,9 @@ const MainCard = (props) => {
 
 MainCard.propTypes = {
   hotel: PropsValidator.HOTEL,
-  onMouseOver: PropTypes.func.isRequired
+  isAuthorized: PropTypes.bool.isRequired,
+  onMouseOver: PropTypes.func.isRequired,
+  onButtonClick: PropTypes.func.isRequired
 };
 
 export default MainCard;

@@ -1,16 +1,32 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-const ReviewForm = () => {
+import {sendComment} from '../../store/api-actions';
+
+const ReviewForm = ({onSubmit, isSendingComment}) => {
   const [review, setReview] = useState({
     rating: ``,
-    review: ``
+    comment: ``
   });
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+
+    setReview({
+      rating: ``,
+      comment: ``
+    });
+
+    onSubmit({
+      ...review
+    });
   };
 
   const handleChange = (evt) => {
+    if (isSendingComment) {
+      return;
+    }
     const {name, value} = evt.target;
     setReview((prevReview) => (
       {...prevReview, [name]: value}
@@ -92,19 +108,37 @@ const ReviewForm = () => {
       </div>
       <textarea
         className="reviews__textarea form__textarea"
-        id="review" name="review"
+        id="review" name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={review.review}
+        value={review.comment}
         onChange={handleChange}
+        disabled={isSendingComment}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit">Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={isSendingComment || !review.comment || !review.rating || review.comment.length < 30 || review.comment > 500}>Submit</button>
       </div>
     </form>
   );
 };
 
-export default ReviewForm;
+ReviewForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  isSendingComment: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isSendingComment: state.isSendingComment
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onSubmit(review) {
+    dispatch(sendComment(ownProps.id, review));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);

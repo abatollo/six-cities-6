@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
+
 import PropTypes from 'prop-types';
-import {CitiesActionCreator} from '../../store/cities/action';
+import {ActionCreator} from '../../store/action';
 
-import {CITIES} from '../../utils.js';
+import {CITIES} from '../../const.js';
 
-const CitiesList = ({currentCity, setCurrentCity}) => {
+const CitiesList = ({currentCity, changeCurrentCity}) => {
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">
@@ -15,7 +16,7 @@ const CitiesList = ({currentCity, setCurrentCity}) => {
               className={`${currentCity === city.title ? `tabs__item--active` : ``} locations__item-link tabs__item`}
               href="#"
               onClick={() => {
-                setCurrentCity(city.title);
+                changeCurrentCity(city.title);
               }}
             >
               <span>{city.title}</span>
@@ -28,18 +29,18 @@ const CitiesList = ({currentCity, setCurrentCity}) => {
 
 CitiesList.propTypes = {
   currentCity: PropTypes.string.isRequired,
-  setCurrentCity: PropTypes.func.isRequired
+  changeCurrentCity: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    currentCity: state.cities.currentCity
+    currentCity: state.currentCity
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentCity(value) {
-    dispatch(CitiesActionCreator.setCurrentCity(value));
+  changeCurrentCity(value) {
+    dispatch(ActionCreator.changeCurrentCity(value));
   },
 });
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-const PlacesEmpty = ({city}) => {
+const MainListEmpty = ({city}) => {
 
   return (
     <div className="cities__places-container cities__places-container--empty container">
@@ -17,14 +17,14 @@ const PlacesEmpty = ({city}) => {
   );
 };
 
-PlacesEmpty.propTypes = {
+MainListEmpty.propTypes = {
   city: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    city: state.cities.currentCity
+    city: state.currentCity
   };
 };
 
-export default connect(mapStateToProps, null)(PlacesEmpty);
+export default connect(mapStateToProps, null)(MainListEmpty);

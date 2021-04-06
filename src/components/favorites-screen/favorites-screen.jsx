@@ -1,6 +1,6 @@
-import React from "react";
-import Header from "../header/header";
-import FavoritesList from "../favorites-list/favorites-list";
+import React from 'react';
+import Header from '../header/header';
+import FavoritesList from '../favorites-list/favorites-list';
 
 const FavoritesScreen = () => {
   return (
@@ -8,10 +8,7 @@ const FavoritesScreen = () => {
       <Header />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
-          <section className="favorites">
-            <h1 className="favorites__title">Saved listing</h1>
-            <FavoritesList />
-          </section>
+          <FavoritesList />
         </div>
       </main>
       <footer className="footer container">

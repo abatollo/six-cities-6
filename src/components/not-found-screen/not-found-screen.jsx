@@ -1,7 +1,8 @@
-import React from "react";
-import Header from "../header/header";
+import React from 'react';
 
-const NotFoundPage = () => {
+import Header from '../header/header';
+
+const NotFoundScreen = () => {
   return (
     <div className="page page--gray page--login">
       <Header />
@@ -13,4 +14,4 @@ const NotFoundPage = () => {
   );
 };
 
-export default NotFoundPage;
+export default NotFoundScreen;

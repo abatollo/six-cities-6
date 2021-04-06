@@ -1,3 +1,5 @@
+import {FavoriteStatus} from './const';
+
 const Routes = {
   MAIN: `/`,
   LOGIN: `/login`,
@@ -8,7 +10,16 @@ const Routes = {
 const APIRoutes = {
   HOTELS: `/hotels`,
   LOGIN: `/login`,
-  LOGOUT: `/logout`
+  COMMENTS: `/comments`,
+  FAVORITE: `/favorite`,
 };
 
-export {Routes, APIRoutes};
+const APIRouteMethods = {
+  fetchHotel: (id) => `${APIRoutes.HOTELS}/${id}`,
+  fetchHotelsNearby: (id) => `${APIRoutes.HOTELS}/${id}/nearby`,
+  fetchHotelComments: (id) => `${APIRoutes.COMMENTS}/${id}`,
+  sendHotelComment: (id) => `${APIRoutes.COMMENTS}/${id}`,
+  setFavorite: (id, isFavorite = FavoriteStatus.ON) => `${APIRoutes.FAVORITE}/${id}/${isFavorite}`
+};
+
+export {Routes, APIRoutes, APIRouteMethods};

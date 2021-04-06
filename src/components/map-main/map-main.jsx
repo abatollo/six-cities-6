@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MainMap = ({mapRef}) => {
+const MapMain = ({mapRef}) => {
   return (
     <section id="map" className="cities__map map" style={{height: `100%`}} ref={mapRef} />
   );
 };
 
-MainMap.propTypes = {
+MapMain.propTypes = {
   mapRef: PropTypes.object.isRequired
 };
 
-export default MainMap;
+export default MapMain;

@@ -1,23 +1,36 @@
-import React, {useRef} from "react";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {login, logout} from "../../store/api-actions";
-import Header from "../header/header";
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-const LoginScreen = ({onSubmit, onLoad}) => {
-  const loginRef = useRef();
-  const passwordRef = useRef();
+import {login} from '../../store/api-actions';
+import Header from '../header/header';
+
+const LoginScreen = ({onSubmit}) => {
+  const [user, setUser] = useState({
+    email: ``,
+    password: ``
+  });
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
+    setUser({
+      email: ``,
+      password: ``
+    });
+
     onSubmit({
-      login: loginRef.current.value,
-      password: passwordRef.current.value,
+      ...user,
+      login: user.email
     });
   };
 
-  onLoad();
+  const handleChange = (evt) => {
+    const {name, value} = evt.target;
+    setUser((prevUser) => (
+      {...prevUser, [name]: value}
+    ));
+  };
 
   return (
     <div className="page page--gray page--login">
@@ -29,11 +42,11 @@ const LoginScreen = ({onSubmit, onLoad}) => {
             <form className="login__form form" action="#" method="post" onSubmit={handleSubmit}>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
-                <input ref={loginRef} className="login__input form__input" type="email" name="email" placeholder="Email" required="" />
+                <input className="login__input form__input" type="email" name="email" placeholder="Email" required="" onChange={handleChange} />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
-                <input ref={passwordRef} className="login__input form__input" type="password" name="password" placeholder="Password" required="" />
+                <input className="login__input form__input" type="password" name="password" placeholder="Password" required="" onChange={handleChange} />
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
             </form>
@@ -52,16 +65,12 @@ const LoginScreen = ({onSubmit, onLoad}) => {
 };
 
 LoginScreen.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  onLoad: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
     dispatch(login(authData));
-  },
-  onLoad() {
-    dispatch(logout());
   }
 });
 

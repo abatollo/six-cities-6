@@ -1,13 +1,12 @@
-import React from "react";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
-import {Routes} from "../../routes";
-import {AuthorizationStatus} from "../../utils";
-import PropTypes from "prop-types";
+import React from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const Header = ({authorizationStatus}) => {
-  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
+import {Routes} from '../../routes';
+import {checkAuthorizationStatus} from '../../utils/check-authorization-status';
 
+const Header = ({isAuthorized}) => {
   return (
     <header className="header">
       <div className="container">
@@ -37,12 +36,12 @@ const Header = ({authorizationStatus}) => {
 };
 
 Header.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired
+  isAuthorized: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    authorizationStatus: state.authorization.authorizationStatus
+    isAuthorized: checkAuthorizationStatus(state.authorizationStatus)
   };
 };
 
