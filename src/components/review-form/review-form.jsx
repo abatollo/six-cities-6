@@ -22,6 +22,8 @@ const ReviewForm = ({onSubmit, isSendingComment}) => {
     onSubmit({
       ...review
     });
+
+    evt.target.reset();
   };
 
   const handleChange = (evt) => {
@@ -48,6 +50,7 @@ const ReviewForm = ({onSubmit, isSendingComment}) => {
           id="5-stars"
           type="radio"
           onChange={handleChange}
+          disabled={isSendingComment}
         />
         <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
           <svg className="form__star-image" width={37} height={33}>
@@ -61,6 +64,7 @@ const ReviewForm = ({onSubmit, isSendingComment}) => {
           id="4-stars"
           type="radio"
           onChange={handleChange}
+          disabled={isSendingComment}
         />
         <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
           <svg className="form__star-image" width="37" height="33">
@@ -74,6 +78,7 @@ const ReviewForm = ({onSubmit, isSendingComment}) => {
           id="3-stars"
           type="radio"
           onChange={handleChange}
+          disabled={isSendingComment}
         />
         <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
           <svg className="form__star-image" width="37" height="33">
@@ -87,6 +92,7 @@ const ReviewForm = ({onSubmit, isSendingComment}) => {
           id="2-stars"
           type="radio"
           onChange={handleChange}
+          disabled={isSendingComment}
         />
         <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
           <svg className="form__star-image" width="37" height="33">
@@ -100,6 +106,7 @@ const ReviewForm = ({onSubmit, isSendingComment}) => {
           id="1-star"
           type="radio"
           onChange={handleChange}
+          disabled={isSendingComment}
         />
         <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
           <svg className="form__star-image" width="37" height="33">
