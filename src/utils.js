@@ -91,4 +91,45 @@ const CITIES = [
   }
 ];
 
+export const SORT_TYPES = {
+  POPULAR: `popular`,
+  LOW_PRICE: `low-price`,
+  HIGH_PRICE: `high-price`,
+  TOP_RATED: `top-rated`
+};
+
+export const SORT_LIST = [
+  {
+    text: `Popular`,
+    type: SORT_TYPES.POPULAR
+  },
+  {
+    text: `Price: low to high`,
+    type: SORT_TYPES.LOW_PRICE
+  },
+  {
+    text: `Price: high to low`,
+    type: SORT_TYPES.HIGH_PRICE
+  },
+  {
+    text: `Top rated first`,
+    type: SORT_TYPES.TOP_RATED
+  },
+];
+
+export const filterOffersByCity = (city, offers) => offers.filter((offer) => offer.city.name === city);
+
+export const sortOffers = (currentSort, offers) => {
+  switch (currentSort) {
+    case SORT_TYPES.LOW_PRICE:
+      return offers.sort((a, b) => a.price - b.price);
+    case SORT_TYPES.HIGH_PRICE:
+      return offers.sort((a, b) => b.price - a.price);
+    case SORT_TYPES.TOP_RATED:
+      return offers.sort((a, b) => b.rating - a.rating);
+    default:
+      return offers;
+  }
+};
+
 export {PropsValidator, MapSizes, CITIES};

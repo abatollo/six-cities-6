@@ -1,7 +1,7 @@
 import {CitiesActionTypes} from './action';
 
-import hotels from '../mock/hotels';
-import comments from '../mock/comments';
+import hotels from '../../mock/hotels';
+import comments from '../../mock/comments';
 
 const initialState = {
   currentCity: `Paris`,
