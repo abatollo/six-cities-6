@@ -3,6 +3,7 @@ import {SORT_TYPES, AuthorizationStatus} from '../const';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  userEmail: ``,
   currentCity: `Paris`,
   currentSort: SORT_TYPES.POPULAR,
 

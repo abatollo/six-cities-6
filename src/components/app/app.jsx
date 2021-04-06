@@ -34,7 +34,7 @@ const App = ({isError}) => {
               );
             }}
           />
-          <Route exact path={Routes.HOTELS}>
+          <Route exact path={Routes.OFFER}>
             <PropertyScreen />
           </Route>
           <Route>

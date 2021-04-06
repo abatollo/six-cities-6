@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {sendComment} from '../../store/api-actions';
+import {MIN_USER_REVIEW_TEXT_LENGTH, MAX_USER_REVIEW_TEXT_LENGTH} from '../../const';
 
 const ReviewForm = ({onSubmit, isSendingComment}) => {
   const [review, setReview] = useState({
@@ -118,7 +119,7 @@ const ReviewForm = ({onSubmit, isSendingComment}) => {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={isSendingComment || !review.comment || !review.rating || review.comment.length < 30 || review.comment > 500}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={isSendingComment || !review.comment || !review.rating || review.comment.length < MIN_USER_REVIEW_TEXT_LENGTH || review.comment > MAX_USER_REVIEW_TEXT_LENGTH}>Submit</button>
       </div>
     </form>
   );
