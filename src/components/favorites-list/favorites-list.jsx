@@ -1,16 +1,17 @@
 import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import LoadingScreen from '../loading-screen/loading-screen';
 import FavoritesListEmpty from '../favorites-list-empty/favorites-list-empty';
 import FavoriteCityList from '../favorite-city-list/favorite-city-list';
 
-import {fetchFavoriteHotels} from '../../store/api-actions';
 import {PropsValidator} from '../../utils/props-validator';
 import {sortHotelsByCities} from '../../utils/sort-hotels-by-cities';
+import {checkAuthorizationStatus} from '../../utils/check-authorization-status';
+import {fetchFavoriteHotels} from '../../store/api-actions';
 
-const FavoritesList = ({favoriteHotels, isFavoriteHotelsLoading, onLoadData}) => {
+const FavoritesList = ({favoriteHotels, isFavoriteHotelsLoading, isAuthorized, onLoadData}) => {
   useEffect(() => {
     if (!isFavoriteHotelsLoading) {
       onLoadData();
@@ -23,7 +24,7 @@ const FavoritesList = ({favoriteHotels, isFavoriteHotelsLoading, onLoadData}) =>
     );
   }
 
-  if (favoriteHotels.length === 0) {
+  if (!favoriteHotels.length) {
     return (
       <FavoritesListEmpty />
     );
@@ -37,6 +38,7 @@ const FavoritesList = ({favoriteHotels, isFavoriteHotelsLoading, onLoadData}) =>
           key={city}
           city={city}
           hotels={cityHotels}
+          isAuthorized={isAuthorized}
         />
         )}
       </ul>
@@ -47,13 +49,15 @@ const FavoritesList = ({favoriteHotels, isFavoriteHotelsLoading, onLoadData}) =>
 FavoritesList.propTypes = {
   favoriteHotels: PropTypes.arrayOf(PropsValidator.HOTEL),
   isFavoriteHotelsLoading: PropTypes.bool.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
   onLoadData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
     favoriteHotels: state.favoriteHotels,
-    isFavoriteHotelsLoading: state.isFavoriteHotelsLoading
+    isFavoriteHotelsLoading: state.isFavoriteHotelsLoading,
+    isAuthorized: checkAuthorizationStatus(state.authorizationStatus)
   };
 };
 

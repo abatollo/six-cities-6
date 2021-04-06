@@ -15,17 +15,21 @@ export const fetchHotels = () => (dispatch, _getState, api) => {
     });
 };
 
-export const setFavoriteList = (id, status) => (dispatch, _getState, api) => {
-  dispatch(ActionCreator.setFavoriteListStart());
+export const setFavoriteList = (id, status, isAuthorized) => (dispatch, _getState, api) => {
+  if (isAuthorized) {
+    dispatch(ActionCreator.setFavoriteListStart());
 
-  api.post(APIRouteMethods.setFavorite(id, status))
-    .then(({data}) => {
-      const hotels = _getState().hotels;
-      dispatch(ActionCreator.setFavoriteListSuccess(hotels.map((hotel) => hotel.id === id ? adaptHotelToClient(data) : hotel)));
-    })
-    .catch(() => {
-      dispatch(ActionCreator.setFavoriteListFail());
-    });
+    api.post(APIRouteMethods.setFavorite(id, status))
+      .then(({data}) => {
+        const hotels = _getState().hotels;
+        dispatch(ActionCreator.setFavoriteListSuccess(hotels.map((hotel) => hotel.id === id ? adaptHotelToClient(data) : hotel)));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setFavoriteListFail());
+      });
+  } else {
+    dispatch(ActionCreator.redirectToRoute(Routes.LOGIN));
+  }
 };
 
 export const fetchHotel = (id) => (dispatch, _getState, api) => {
@@ -40,16 +44,20 @@ export const fetchHotel = (id) => (dispatch, _getState, api) => {
     });
 };
 
-export const setFavorite = (id, status) => (dispatch, _getState, api) => {
-  dispatch(ActionCreator.setFavoriteStart());
+export const setFavorite = (id, status, isAuthorized) => (dispatch, _getState, api) => {
+  if (isAuthorized) {
+    dispatch(ActionCreator.setFavoriteStart());
 
-  api.post(APIRouteMethods.setFavorite(id, status))
-    .then(({data}) => {
-      dispatch(ActionCreator.setFavoriteSuccess(data));
-    })
-    .catch(() => {
-      dispatch(ActionCreator.setFavoriteFail());
-    });
+    api.post(APIRouteMethods.setFavorite(id, status))
+      .then(({data}) => {
+        dispatch(ActionCreator.setFavoriteSuccess(data));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setFavoriteFail());
+      });
+  } else {
+    dispatch(ActionCreator.redirectToRoute(Routes.LOGIN));
+  }
 };
 
 export const fetchComments = (id) => (dispatch, _getState, api) => {
@@ -89,17 +97,21 @@ export const fetchNearbyHotels = (id) => (dispatch, _getState, api) => {
     });
 };
 
-export const setFavoriteNearby = (id, status) => (dispatch, _getState, api) => {
-  dispatch(ActionCreator.setFavoriteNearbyStart());
+export const setFavoriteNearby = (id, status, isAuthorized) => (dispatch, _getState, api) => {
+  if (isAuthorized) {
+    dispatch(ActionCreator.setFavoriteNearbyStart());
 
-  api.post(APIRouteMethods.setFavorite(id, status))
-    .then(({data}) => {
-      const nearbyHotels = _getState().nearbyHotels;
-      dispatch(ActionCreator.setFavoriteNearbySuccess(nearbyHotels.map((hotel) => hotel.id === id ? adaptHotelToClient(data) : hotel)));
-    })
-    .catch(() => {
-      dispatch(ActionCreator.setFavoriteNearbyFail());
-    });
+    api.post(APIRouteMethods.setFavorite(id, status))
+      .then(({data}) => {
+        const nearbyHotels = _getState().nearbyHotels;
+        dispatch(ActionCreator.setFavoriteNearbySuccess(nearbyHotels.map((hotel) => hotel.id === id ? adaptHotelToClient(data) : hotel)));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setFavoriteNearbyFail());
+      });
+  } else {
+    dispatch(ActionCreator.redirectToRoute(Routes.LOGIN));
+  }
 };
 
 export const fetchFavoriteHotels = () => (dispatch, _getState, api) => {
@@ -114,17 +126,21 @@ export const fetchFavoriteHotels = () => (dispatch, _getState, api) => {
     });
 };
 
-export const setFavoriteFavorites = (id, status) => (dispatch, _getState, api) => {
-  dispatch(ActionCreator.setFavoriteFavoritesStart());
+export const setFavoriteFavorites = (id, status, isAuthorized) => (dispatch, _getState, api) => {
+  if (isAuthorized) {
+    dispatch(ActionCreator.setFavoriteFavoritesStart());
 
-  api.post(APIRouteMethods.setFavorite(id, status))
-    .then(({data}) => {
-      const favoriteHotels = _getState().favoriteHotels;
-      dispatch(ActionCreator.setFavoriteFavoritesSuccess(favoriteHotels.map((hotel) => hotel.id === id ? adaptHotelToClient(data) : hotel)));
-    })
-    .catch(() => {
-      dispatch(ActionCreator.setFavoriteFavoritesFail());
-    });
+    api.post(APIRouteMethods.setFavorite(id, status))
+      .then(({data}) => {
+        const favoriteHotels = _getState().favoriteHotels;
+        dispatch(ActionCreator.setFavoriteFavoritesSuccess(favoriteHotels.map((hotel) => hotel.id === id ? adaptHotelToClient(data) : hotel)));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setFavoriteFavoritesFail());
+      });
+  } else {
+    dispatch(ActionCreator.redirectToRoute(Routes.LOGIN));
+  }
 };
 
 export const checkAuth = () => (dispatch, _getState, api) => (

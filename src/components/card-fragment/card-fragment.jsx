@@ -7,11 +7,15 @@ import BookmarkButtonFragment from '../bookmark-button-fragment/bookmark-button-
 import {PropsValidator} from '../../utils/props-validator';
 import {Routes} from '../../routes';
 
-const CardFragment = (props) => {
-  const hotel = props.hotel;
-  const onButtonClick = props.onButtonClick;
-
-  const {price, isFavorite, rating, title, id, type} = hotel;
+const CardFragment = ({hotel, isAuthorized, onButtonClick}) => {
+  const {
+    price,
+    isFavorite,
+    rating,
+    title,
+    id,
+    type
+  } = hotel;
 
   return (
     <>
@@ -20,7 +24,7 @@ const CardFragment = (props) => {
           <b className="place-card__price-value">&euro; {price}</b>
           <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
-        <BookmarkButtonFragment isFavorite={isFavorite} id={id} onButtonClick={onButtonClick} />
+        <BookmarkButtonFragment isFavorite={isFavorite} id={id} onButtonClick={onButtonClick} isAuthorized={isAuthorized} />
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
@@ -38,6 +42,7 @@ const CardFragment = (props) => {
 
 CardFragment.propTypes = {
   hotel: PropsValidator.HOTEL,
+  isAuthorized: PropTypes.bool.isRequired,
   onButtonClick: PropTypes.func.isRequired
 };
 

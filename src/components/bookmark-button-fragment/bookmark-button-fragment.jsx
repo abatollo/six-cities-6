@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const BookmarkButtonFragment = ({isFavorite, onButtonClick, id}) => {
+const BookmarkButtonFragment = ({id, isFavorite, isAuthorized, onButtonClick}) => {
   const handleClick = () => {
-    onButtonClick(id, Number(!isFavorite));
+    onButtonClick(id, Number(!isFavorite), isAuthorized);
   };
 
   return (
@@ -19,6 +19,7 @@ const BookmarkButtonFragment = ({isFavorite, onButtonClick, id}) => {
 BookmarkButtonFragment.propTypes = {
   id: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
   onButtonClick: PropTypes.func.isRequired
 };
 

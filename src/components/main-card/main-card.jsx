@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {PropsValidator} from '../../utils/props-validator';
-
 import CardFragment from '../card-fragment/card-fragment';
 
-const MainCard = (props) => {
+import {PropsValidator} from '../../utils/props-validator';
 
-  const hotel = props.hotel;
-  const onMouseOver = props.onMouseOver;
-  const onButtonClick = props.onButtonClick;
-
+const MainCard = ({hotel, isAuthorized, onMouseOver, onButtonClick}) => {
   const {isPremium, previewImage, id} = hotel;
 
   const handleMouseOver = () => {
@@ -30,7 +25,7 @@ const MainCard = (props) => {
         </a>
       </div>
       <div className="place-card__info">
-        <CardFragment hotel={hotel} onButtonClick={onButtonClick} />
+        <CardFragment hotel={hotel} isAuthorized={isAuthorized} onButtonClick={onButtonClick} />
       </div>
     </article>
   );
@@ -38,6 +33,7 @@ const MainCard = (props) => {
 
 MainCard.propTypes = {
   hotel: PropsValidator.HOTEL,
+  isAuthorized: PropTypes.bool.isRequired,
   onMouseOver: PropTypes.func.isRequired,
   onButtonClick: PropTypes.func.isRequired
 };

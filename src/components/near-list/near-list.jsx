@@ -7,7 +7,7 @@ import NearCard from '../near-card/near-card';
 import {PropsValidator} from '../../utils/props-validator';
 import {setFavoriteNearby} from '../../store/api-actions';
 
-const NearList = ({hotels, onButtonClick}) => {
+const NearList = ({hotels, isAuthorized, onButtonClick}) => {
   return (
     <div className="near-places__list places__list">
       {hotels.map((hotel) =>
@@ -15,6 +15,7 @@ const NearList = ({hotels, onButtonClick}) => {
           key={hotel.id}
           hotel={hotel}
           onButtonClick={onButtonClick}
+          isAuthorized={isAuthorized}
         />)}
     </div>
   );
@@ -22,6 +23,7 @@ const NearList = ({hotels, onButtonClick}) => {
 
 NearList.propTypes = {
   hotels: PropTypes.arrayOf(PropsValidator.HOTEL).isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
   onButtonClick: PropTypes.func.isRequired
 };
 

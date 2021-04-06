@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 
 import {setFavorite} from '../../store/api-actions';
 
-const BookmarkButtonProperty = ({isFavorite, onButtonClick, id}) => {
+const BookmarkButtonProperty = ({id, isFavorite, isAuthorized, onButtonClick}) => {
   const handleClick = () => {
-    onButtonClick(id, Number(!isFavorite));
+    onButtonClick(id, Number(!isFavorite), isAuthorized);
   };
 
   return (
@@ -22,6 +22,7 @@ const BookmarkButtonProperty = ({isFavorite, onButtonClick, id}) => {
 BookmarkButtonProperty.propTypes = {
   id: PropTypes.number.isRequired,
   isFavorite: PropTypes.bool.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
   onButtonClick: PropTypes.func.isRequired
 };
 
@@ -33,8 +34,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onButtonClick(id, isFavorite) {
-    dispatch(setFavorite(id, isFavorite));
+  onButtonClick(id, isFavorite, isAuthorized) {
+    dispatch(setFavorite(id, isFavorite, isAuthorized));
   }
 });
 

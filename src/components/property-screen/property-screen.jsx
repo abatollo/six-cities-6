@@ -79,7 +79,7 @@ const PropertyScreen = ({hotel, isHotelLoading, isAuthorized, comments, isCommen
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <BookmarkButtonProperty />
+                <BookmarkButtonProperty isAuthorized={isAuthorized} />
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
@@ -149,7 +149,7 @@ const PropertyScreen = ({hotel, isHotelLoading, isAuthorized, comments, isCommen
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {!isNearbyHotelsLoading ? <NearList hotels={nearbyHotels.slice(0, 3)} /> : ``}
+              {!isNearbyHotelsLoading ? <NearList hotels={nearbyHotels.slice(0, 3)} isAuthorized={isAuthorized} /> : ``}
             </div>
           </section>
         </div>
