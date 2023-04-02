@@ -3,7 +3,7 @@ import {Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {Routes} from '../../routes';
+import {AppRoutes} from '../../routes';
 import {checkAuthorizationStatus} from '../../utils/check-authorization-status';
 
 
@@ -16,7 +16,7 @@ const PrivateRoute = ({render, path, exact, isAuthorized}) => {
         return (
           isAuthorized
             ? render(routeProps)
-            : <Redirect to={Routes.LOGIN} />
+            : <Redirect to={AppRoutes.LOGIN} />
         );
       }}
     />

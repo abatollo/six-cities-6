@@ -33,9 +33,10 @@ const Map = ({points, render, activeId}) => {
       })
       .addTo(mapRef.current);
 
-    return () => {
-      mapRef.current.remove();
-    };
+    // return () => {
+    //   console.log(mapRef.current);
+    //   mapRef.current.remove();
+    // };
   }, [city]);
 
   useEffect(() => {
@@ -56,7 +57,7 @@ const Map = ({points, render, activeId}) => {
       .addTo(mapRef.current)
       .bindPopup(point.title);
     });
-    return () => map.clearLayers();
+    // return () => map.clearLayers();
   }, [points, activeId]);
 
   return (

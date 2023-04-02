@@ -12,29 +12,29 @@ import Error from '../error/error';
 
 import browserHistory from '../../browser-history';
 import PrivateRoute from '../private-route/private-route';
-import {Routes} from '../../routes';
+import {AppRoutes} from '../../routes';
 
 const App = ({isError}) => {
   return (
     <>
       <Router history={browserHistory}>
         <Switch>
-          <Route exact path={Routes.MAIN}>
+          <Route exact path={AppRoutes.MAIN}>
             <MainScreen />
           </Route>
-          <Route exact path={Routes.LOGIN}>
+          <Route exact path={AppRoutes.LOGIN}>
             <LoginScreen />
           </Route>
           <PrivateRoute
             exact
-            path={Routes.FAVORITES}
+            path={AppRoutes.FAVORITES}
             render={() => {
               return (
                 <FavoritesScreen />
               );
             }}
           />
-          <Route exact path={Routes.OFFER}>
+          <Route exact path={AppRoutes.OFFER}>
             <PropertyScreen />
           </Route>
           <Route>

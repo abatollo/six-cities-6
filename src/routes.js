@@ -1,6 +1,6 @@
 import {FavoriteStatus} from './const';
 
-const Routes = {
+const AppRoutes = {
   MAIN: `/`,
   LOGIN: `/login`,
   FAVORITES: `/favorites`,
@@ -22,4 +22,4 @@ const APIRouteMethods = {
   setFavorite: (id, isFavorite = FavoriteStatus.ON) => `${APIRoutes.FAVORITE}/${id}/${isFavorite}`
 };
 
-export {Routes, APIRoutes, APIRouteMethods};
+export {AppRoutes, APIRoutes, APIRouteMethods};

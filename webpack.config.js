@@ -7,11 +7,19 @@ module.exports = {
         path: path.resolve(__dirname, 'public')
     },
     devServer: {
-        contentBase: path.resolve(__dirname, 'public'),
+        // contentBase: path.resolve(__dirname, 'public'),
+        static: {
+          directory: path.join(__dirname, 'public'),
+        },
         open: false,
         port: 8080,
         historyApiFallback: true
     },
+    // devServer: {
+    //   static: {
+    //     directory: path.join(__dirname, 'public'),
+    //   },
+    // },
     module: {
         rules: [
         {

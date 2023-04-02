@@ -6,7 +6,7 @@ import BookmarkButtonFragment from '../bookmark-button-fragment/bookmark-button-
 import StarRating from '../star-rating/star-rating';
 
 import {PropsValidator} from '../../utils/props-validator';
-import {Routes} from '../../routes';
+import {AppRoutes} from '../../routes';
 
 const CardFragment = ({hotel, isAuthorized, onButtonClick}) => {
   const {
@@ -34,7 +34,7 @@ const CardFragment = ({hotel, isAuthorized, onButtonClick}) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <Link to={Routes.OFFER.replace(`:id`, id)}>{title}</Link>
+        <Link to={AppRoutes.OFFER.replace(`:id`, id)}>{title}</Link>
       </h2>
       <p className="place-card__type" style={{textTransform: `capitalize`}}>{type}</p>
     </>

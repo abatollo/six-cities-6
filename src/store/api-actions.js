@@ -1,6 +1,6 @@
 import {ActionCreator} from './action';
 import {AuthorizationStatus} from '../const';
-import {APIRoutes, APIRouteMethods, Routes} from '../routes';
+import {APIRoutes, APIRouteMethods, AppRoutes} from '../routes';
 import {adaptHotelsToClient, adaptHotelToClient, adaptCommentsToClient} from '../utils/adapter';
 
 export const fetchHotels = () => (dispatch, _getState, api) => {
@@ -28,7 +28,7 @@ export const setFavoriteList = (id, status, isAuthorized) => (dispatch, _getStat
         dispatch(ActionCreator.setFavoriteListFail());
       });
   } else {
-    dispatch(ActionCreator.redirectToRoute(Routes.LOGIN));
+    dispatch(ActionCreator.redirectToRoute(AppRoutes.LOGIN));
   }
 };
 
@@ -56,7 +56,7 @@ export const setFavorite = (id, status, isAuthorized) => (dispatch, _getState, a
         dispatch(ActionCreator.setFavoriteFail());
       });
   } else {
-    dispatch(ActionCreator.redirectToRoute(Routes.LOGIN));
+    dispatch(ActionCreator.redirectToRoute(AppRoutes.LOGIN));
   }
 };
 
@@ -110,7 +110,7 @@ export const setFavoriteNearby = (id, status, isAuthorized) => (dispatch, _getSt
         dispatch(ActionCreator.setFavoriteNearbyFail());
       });
   } else {
-    dispatch(ActionCreator.redirectToRoute(Routes.LOGIN));
+    dispatch(ActionCreator.redirectToRoute(AppRoutes.LOGIN));
   }
 };
 
@@ -139,7 +139,7 @@ export const setFavoriteFavorites = (id, status, isAuthorized) => (dispatch, _ge
         dispatch(ActionCreator.setFavoriteFavoritesFail());
       });
   } else {
-    dispatch(ActionCreator.redirectToRoute(Routes.LOGIN));
+    dispatch(ActionCreator.redirectToRoute(AppRoutes.LOGIN));
   }
 };
 
@@ -155,5 +155,5 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
       dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       dispatch(ActionCreator.changeEmail(email));
     })
-    .then(() => dispatch(ActionCreator.redirectToRoute(Routes.FAVORITES)))
+    .then(() => dispatch(ActionCreator.redirectToRoute(AppRoutes.FAVORITES)))
 );
