@@ -1,6 +1,6 @@
 {
   "name": "six-cities",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "private": true,
   "description": "Личный проект «Шесть городов» от HTML Academy",
   "scripts": {
@@ -17,10 +17,10 @@
     "css-loader": "^6.8.1",
     "eslint": "^8.45.0",
     "eslint-config-htmlacademy": "^9.1.1",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react": "^7.33.0",
     "file-loader": "^6.2.0",
     "style-loader": "^3.3.3",
-    "webpack": "^5.88.1",
+    "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   },
