@@ -1,6 +1,6 @@
 {
   "name": "six-cities",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "private": true,
   "description": "Личный проект «Шесть городов» от HTML Academy",
   "scripts": {
@@ -10,7 +10,7 @@
     "start": "webpack-dev-server --mode=development"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.17",
+    "@babel/core": "^7.22.19",
     "@babel/preset-env": "^7.22.15",
     "@babel/preset-react": "^7.22.15",
     "babel-loader": "^9.1.3",
