@@ -1,6 +1,6 @@
 {
   "name": "six-cities",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "private": true,
   "description": "Личный проект «Шесть городов» от HTML Academy",
   "scripts": {
@@ -25,11 +25,11 @@
     "webpack-dev-server": "^4.15.1"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "dependencies": {
     "@redux-devtools/extension": "^3.2.5",
-    "axios": "^1.5.1",
+    "axios": "^1.6.0",
     "leaflet": "^1.9.4",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
